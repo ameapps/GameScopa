@@ -1,0 +1,7 @@
+{
+  "name": "Scopa",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
