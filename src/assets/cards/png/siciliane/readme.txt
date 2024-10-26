@@ -1,0 +1,1 @@
+nf = sono le carte che rappresentano un valore >= 7 e che non sono figure (not figure)
