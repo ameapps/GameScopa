@@ -10,6 +10,34 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        .user-level-star {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent; 
+            border-right: 25px solid transparent; 
+            border-bottom: 50px solid yellow; 
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            .user-level-star-text {
+                position: relative;
+                left: -10px;
+                top: 1.5em;
+                z-index: 2;
+                user-select: none;
+            }
+        }
+        .user-level-star:after {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent; 
+            border-right: 25px solid transparent; 
+            border-top: 50px solid yellow;
+            position: absolute;
+            content: "";
+            top: 15px;
+            left: -25px; 
+        }
     }
     .user-coins {
         width: 100%;
@@ -19,24 +47,3 @@
         align-items: center;
     }
 }
-
-
-.user-level-star {
-    width: 0;
-    height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-bottom: 100px solid yellow;
-    position: relative;
-  }
-  .user-level-star:after {
-    width: 0;
-    height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-top: 100px solid yellow;
-    position: absolute;
-    content: "";
-    top: 30px;
-    left: -50px;
-  }
