@@ -5,7 +5,8 @@
     display: flex;
     flex-direction: row;
     column-gap: calc(1em);
-    padding-left: 1em;
+    padding: 4px;
+    padding-top: 0;
     .user-profile-container {
         width: 100%;
         height: 100%;
@@ -13,6 +14,8 @@
         justify-content: center;
         align-items: center;
         flex-direction: row;
+        position: relative;
+        left:4px;
         .user-profile {
             width: 2em;
             height: 2em;
