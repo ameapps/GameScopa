@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-levels.component.scss'],
 })
 export class UserLevelsComponent  implements OnInit {
+  
+  levelProgress: number = 70; // Ad esempio, 70%
 
   constructor() { }
 

@@ -46,6 +46,14 @@
             border: 2px solid red;
             border-radius: 25px;
             background-color: blue;
+        
+            /* Barra di avanzamento */
+            .user-level-progress {
+                height: 100%;
+                background-color: aquamarine;
+                border-radius: 25px; /* Arrotondamento coerente con il contenitore */
+                transition: width 0.3s ease-in-out; /* Animazione */
+            }
         }
     }
     .user-coins {
