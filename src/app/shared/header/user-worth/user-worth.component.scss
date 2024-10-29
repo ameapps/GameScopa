@@ -7,6 +7,7 @@
     column-gap: calc(1em);
     padding: 4px;
     padding-top: 0;
+    // Stile persona
     .user-profile-container {
         width: 100%;
         height: 100%;
@@ -44,9 +45,42 @@
             }
         }
     }
+    // Stile Team
     .user-team-container {
         width: 100%;
         height: 100%;
-        background-color: tan;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        position: relative;
+        left:4px;
+        .user-team-icon {
+            width: 2em;
+            height: 2em;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .user-team-bar {
+            position:relative;
+            top: 2px;
+            left: -1.25em;
+            z-index: 1;
+            width: 100%;
+            height:25px;
+            border: 2px solid red;
+            border-radius: 25px;
+            background-color: blue;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            .user-profile-text {
+                position: relative;
+                left: 1.5em;
+            }
+        }
     }
 }
