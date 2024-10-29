@@ -1,0 +1,48 @@
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    column-gap: calc(1em);
+    padding-left: 1em;
+    .user-profile-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        .user-profile {
+            width: 12%;
+            height: 12%;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .user-profile-bar {
+            position:relative;
+            top: 2px;
+            left: -1.25em;
+            z-index: 1;
+            width: 100%;
+            height:25px;
+            border: 2px solid red;
+            border-radius: 25px;
+            background-color: aquamarine;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            .user-profile-text {
+                left: 1.25em;
+            }
+        }
+    }
+    .user-team-container {
+        width: 100%;
+        height: 100%;
+        background-color: tan;
+    }
+}

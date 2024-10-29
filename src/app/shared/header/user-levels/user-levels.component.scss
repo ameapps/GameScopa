@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: row;
     column-gap: calc(1em);
+    padding: 4px;
     .user-level {
         position: relative;
         width: 100%;
@@ -13,10 +14,9 @@
         align-items: center;
         flex-direction: row;
         .user-level-star {
-            width: 25%;
-            height: 25%;
+            width: 20%;
+            height: 20%;
             position: relative;
-            left: 6px;
             z-index: 2;
             display: flex;
             justify-content: center;
@@ -26,7 +26,7 @@
                 z-index: 3;
                 user-select: none;
                 font-size: 1em;
-                left: calc(2em + 1px);
+                left: calc(2em - 2px);
                 top: 2px;
                 color: white;
                 text-shadow: 
@@ -57,8 +57,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 25%;
-            height: 25%;
+            width: 20%;
+            height: 20%;
             z-index: 2;
             user-select: none;
             .user-level-coin-text {
