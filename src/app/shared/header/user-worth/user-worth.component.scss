@@ -31,12 +31,13 @@
             height:25px;
             border: 2px solid red;
             border-radius: 25px;
-            background-color: aquamarine;
+            background-color: blue;
             display: flex;
             justify-content: left;
             align-items: center;
             .user-profile-text {
-                left: 1.25em;
+                position: relative;
+                left: 1.5em;
             }
         }
     }
