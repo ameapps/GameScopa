@@ -9,6 +9,8 @@
         width: 100%;
         height: 100%;
         display: flex;
+        justify-content: center;
+        align-items: center;
         flex-direction: row;
         .user-level-star {
             width: 25%;
@@ -16,24 +18,26 @@
             position: relative;
             left: 6px;
             z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             .user-level-star-text {
                 position: relative;
-                left: -0.75em;
-                top: 0.75em;
-                z-index: 2;
+                z-index: 3;
                 user-select: none;
                 font-size: 1em;
+                left: calc(2em + 1px);
+                top: 2px;
                 color: white;
                 text-shadow: 
                 1px 1px 0 black,   /* Ombra in basso a destra */
                 -1px -1px 0 black, /* Ombra in alto a sinistra */
                 -1px 1px 0 black,  /* Ombra in basso a sinistra */
-                1px -1px 0 black;  /* Ombra in alto a destra */
+                1px -1px 0 black;  /* Ombra in alto a destra. */
             }
         }
         .user-level-bar {
             position:relative;
-            top: 0.75em;
             left: -0.75em;
             z-index: 1;
             width: 100%;
@@ -49,21 +53,27 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        .user-coin-img {
-            width: 20%;
-            height: 20%;
+        .user-coin-container-img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 25%;
+            height: 25%;
             z-index: 2;
+            user-select: none;
+            .user-level-coin-text {
+                color: white;
+            }
         }
-        .user-coins-amount {
-            // position:relative;
-            // top: 0.75em;
-            // left: -0.75em;
-            // z-index: 1;
-            // width: 100%;
-            // height:25px;
-            // border: 2px solid red;
-            // border-radius: 25px;
-            // background-color: aquamarine;
+        .user-coins-bar {
+            position:relative;
+            left: -1.5em;
+            z-index: 1;
+            width: 100%;
+            height:25px;
+            border: 2px solid red;
+            border-radius: 25px;
+            background-color: blue;
         }
     }
 }
