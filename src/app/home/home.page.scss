@@ -43,5 +43,10 @@
     width: 10em;
     height: 10em;
     padding: 0.25em;
+    transition: transform 0.5s ease-in-out; /* Aggiunge una transizione per un effetto di rotazione morbido */
+  }
+  
+  .cards-container:hover .logo {
+    transform: rotate(360deg); /* Ruota il logo di 360 gradi su hover */
   }
 }
