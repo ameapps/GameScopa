@@ -4,49 +4,42 @@
     height: 100%;
     display: flex;
     flex-direction: row;
-    .store {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-    }
-    .friends {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-    }
-    .street-food {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-    }
-    .mini-games {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-    }
+}
+
+.store, .friends, .street-food, .mini-games {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid transparent; /* Bordo trasparente inizialmente */
+    border-radius: 10px; /* Bordo arrotondato */
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; /* Aggiunge transizioni */
+    padding: 1em; /* Aggiunge padding per un aspetto più "button" */
+    background-color: rgba(255, 255, 255, 0.1); /* Sfondo semi-trasparente */
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2); /* Ombra 3D per un effetto di profondità */
+}
+
+.store:hover, .friends:hover, .street-food:hover, .mini-games:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Ombra più intensa al passaggio del mouse */
+    border-color: #ffcc00; /* Cambia il colore del bordo al passaggio del mouse */
 }
 
 .logo {
     width: 3em;
     height: 3em;
+    margin-bottom: 0.5em; /* Spazio tra l'immagine e il testo */
 }
+
 .text {
     color: white; 
     user-select: none;
+    text-align: center; /* Centra il testo */
+    font-weight: bold; /* Grassetto per il testo */
+    font-size: 1em; /* Aumenta la dimensione del testo */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Ombra per il testo */
 }
