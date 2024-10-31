@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../../services/common/common.service';
 
 @Component({
   selector: 'app-user-worth',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserWorthComponent  implements OnInit {
 
-  constructor() { }
+  constructor(private common: CommonService) { }
 
   ngOnInit() {}
 
