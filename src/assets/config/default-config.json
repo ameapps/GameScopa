@@ -5,16 +5,16 @@
     "streetFoods" : {},
     "shared" : {
         "header" : {
-            "user_level": { "canShow": true },
-            "user_coins": { "canShow": true },
-            "user_info": { "canShow": true },
-            "user_team": { "canShow": true }
+            "user_level": { "can_show": true },
+            "user_coins": { "can_show": true },
+            "user_info": { "can_show": true },
+            "user_team": { "can_show": true }
         },
         "footer" : {
-            "store": { "canShow": true },
-            "friends": { "canShow": true },
-            "street_foods": { "canShow": true },
-            "mini_games": { "canShow": true }
+            "store": { "can_show": true },
+            "friends": { "can_show": true },
+            "street_foods": { "can_show": true },
+            "mini_games": { "can_show": true }
         }
     }
 }

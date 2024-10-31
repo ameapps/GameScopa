@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.common.appConfig = await this.loadAppConfig();
-    alert(JSON.stringify(this.common.appConfig));
+    // alert(JSON.stringify(this.common.appConfig));
   }
 
   async loadAppConfig(): Promise<DefaultConfig> {

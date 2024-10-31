@@ -31,16 +31,16 @@ export class DefaultConfigStreetSharedHeader {
 }
 
 export class DefaultConfigStreetSharedHeaderUserLevel {
-    canShow = false;
+    can_show = false;
 }
 export class DefaultConfigStreetSharedHeaderUserCoins {
-    canShow = false;
+    can_show = false;
 }
 export class DefaultConfigStreetSharedHeaderUserInfo {
-    canShow = false;
+    can_show = false;
 }
 export class DefaultConfigStreetSharedHeaderUserTeam {
-    canShow = false;
+    can_show = false;
 }
 
 export class DefaultConfigStreetSharedFooter {
@@ -51,14 +51,14 @@ export class DefaultConfigStreetSharedFooter {
 }
 
 export class DefaultConfigStreetSharedFooterStore {
-    canShow = false;
+    can_show = false;
 }
 export class DefaultConfigStreetSharedFooterFriends {
-    canShow = false;
+    can_show = false;
 }
 export class DefaultConfigStreetSharedFooterStreetFoods {
-    canShow = false;
+    can_show = false;
 }
 export class DefaultConfigStreetSharedFooterMiniGames {
-    canShow = false;
+    can_show = false;
 }
