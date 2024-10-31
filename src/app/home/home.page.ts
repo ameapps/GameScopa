@@ -9,4 +9,8 @@ export class HomePage {
 
   constructor() {}
 
+  public onPlayClick() {
+    console.log('onPlayClick');
+  }
+
 }

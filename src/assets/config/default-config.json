@@ -1,0 +1,20 @@
+{
+    "home" : {},
+    "friends" : {},
+    "store" : {},
+    "streetFoods" : {},
+    "shared" : {
+        "header" : {
+            "user_level": { "canShow": true },
+            "user_coins": { "canShow": true },
+            "user_info": { "canShow": true },
+            "user_team": { "canShow": true }
+        },
+        "footer" : {
+            "store": { "canShow": true },
+            "friends": { "canShow": true },
+            "street_foods": { "canShow": true },
+            "mini_games": { "canShow": true }
+        }
+    }
+}

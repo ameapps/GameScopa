@@ -23,13 +23,25 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       background-color: green;
       border: solid 3px black;
       border-radius: 8px;
+      .text {
+        position: relative;
+        top: 0.25em;
+        color: white;
+        user-select: none;
+        text-align: center; /* Centra il testo */
+        font-weight: bold; /* Grassetto per il testo */
+        font-size: 1em; /* Aumenta la dimensione del testo */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Ombra per il testo */
+      }
     }
   }
   .logo {
     width: 10em;
     height: 10em;
+    padding: 0.25em;
   }
 }
