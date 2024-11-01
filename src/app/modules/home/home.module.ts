@@ -6,10 +6,12 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { GamesModule } from '../games/games.module';
 
 
 @NgModule({
   imports: [
+    GamesModule,
     CommonModule,
     FormsModule,
     IonicModule,
