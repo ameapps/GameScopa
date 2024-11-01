@@ -5,22 +5,22 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./home/home.module').then((m) => m.HomePageModule),
+      import('./modules/home/home.module').then((m) => m.HomePageModule),
   },
   {
     path: 'friends',
     loadChildren: () =>
-      import('./shared/shared.module').then((m) => m.SharedModule),
+      import('./modules/friends/friends.module').then((m) => m.FriendsModule),
   },
   {
     path: 'store',
     loadChildren: () =>
-      import('./shared/shared.module').then((m) => m.SharedModule),
+      import('./modules/store/store.module').then((m) => m.StoreModule),
   },
   {
     path: 'streetFoods',
     loadChildren: () =>
-      import('./shared/shared.module').then((m) => m.SharedModule),
+      import('./modules/street-foods/street-foods.module').then((m) => m.StreetFoodsModule),
   },
   {
     path: 'shared',
