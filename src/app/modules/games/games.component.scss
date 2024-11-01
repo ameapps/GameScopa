@@ -5,18 +5,22 @@
     padding: 1em;
     background-color: #87ceeb;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: row;
+    align-items: center;
     column-gap: 1em;
+    overflow-x: auto; /* Scorrimento orizzontale */
+    scroll-behavior: smooth;
 
     .game-item-container {
         position: relative;
         width: 250px;
         height: 250px;
+        min-width: 250px;
+        min-height: 250px;
         background-color: aqua;
         display: flex;
         flex-direction: column;
+        flex-shrink: 0;
 
         .play-now-difficulty-container {
             position: relative;
