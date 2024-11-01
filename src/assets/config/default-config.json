@@ -1,23 +1,50 @@
 {
-    "home" : {},
-    "games" : {
-        
+  "home": {},
+  "games": [
+    {
+      "name": "amatures",
+      "play_price": 0
     },
-    "friends" : {},
-    "store" : {},
-    "streetFoods" : {},
-    "shared" : {
-        "header" : {
-            "user_level": { "can_show": true },
-            "user_coins": { "can_show": true },
-            "user_info": { "can_show": true },
-            "user_team": { "can_show": true }
-        },
-        "footer" : {
-            "store": { "can_show": true },
-            "friends": { "can_show": true },
-            "street_foods": { "can_show": true },
-            "mini_games": { "can_show": true }
-        }
+    {
+      "name": "easy",
+      "play_price": 0
+    },
+    {
+      "name": "normal",
+      "play_price": 0
+    },
+    {
+      "name": "hard",
+      "play_price": 0
+    },
+    {
+      "name": "master",
+      "play_price": 0
+    },
+    {
+      "name": "nightmare",
+      "play_price": 0
+    },
+    {
+      "name": "impossible",
+      "play_price": 0
     }
+  ],
+  "friends": {},
+  "store": {},
+  "streetFoods": {},
+  "shared": {
+    "header": {
+      "user_level": { "can_show": true },
+      "user_coins": { "can_show": true },
+      "user_info": { "can_show": true },
+      "user_team": { "can_show": true }
+    },
+    "footer": {
+      "store": { "can_show": true },
+      "friends": { "can_show": true },
+      "street_foods": { "can_show": true },
+      "mini_games": { "can_show": true }
+    }
+  }
 }

@@ -6,6 +6,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: row;
+    column-gap: 1em;
 
     .game-item-container {
         position: relative;
@@ -13,31 +15,49 @@
         height: 250px;
         background-color: aqua;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
 
-        .play-now-difficulty {
-            position: absolute; // Pos. assoluta rispetto al padre, dato che anch'esso definisce la position
-            top: 0;
-            width: 50px;
-            height: 50px;
-            background-color: rebeccapurple;
+        .play-now-difficulty-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
+            .play-now-difficulty {
+                position: absolute;
+                top: 0;
+                width: 50px;
+                height: 50px;
+                background-color: blue;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
         }
 
         .play-now-text-container {
+            position: relative;
             width: 100%;
-            height: 50px;
+            height: 100px;
             background-color: rebeccapurple;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .play-now-price {
-            
+        .play-now-price-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+    }
+
+    .text {
+        color: white;
     }
 }

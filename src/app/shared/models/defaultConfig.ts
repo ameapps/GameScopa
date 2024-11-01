@@ -1,5 +1,6 @@
 export class DefaultConfig {
     home!: DefaultConfigHome;
+    games!: DefaultConfigHomeGames[];
     friends!: DefaultConfigFriends;
     store!: DefaultConfigStore;
     streetFoods!: DefaultConfigStreetFoods;
@@ -8,6 +9,10 @@ export class DefaultConfig {
 
 export class DefaultConfigHome {
 
+}
+export class DefaultConfigHomeGames {
+    name = 'amatures'
+    play_price = 0;
 }
 export class DefaultConfigFriends {
 

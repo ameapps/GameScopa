@@ -1,7 +1,15 @@
 <div class="container">
-  <div class="game-item-container">
-    <div class="play-now-difficulty">1</div>
-    <div class="play-now-text-container">Play now!</div>
-    <div class="play-now-price">Play now!</div>
+  <div class="game-item-container" *ngFor="let game of games; let i = index;">
+    <div class="play-now-difficulty-container">
+      <div class="play-now-difficulty">
+        <span class="text">{{ i }}</span>
+      </div>
+    </div>
+    <div class="play-now-text-container">
+      <span class="text">Play now!</span>
+    </div>
+    <div class="play-now-price-container">
+      <span class="text">Price: {{ game.play_price > 0 ? game.play_price : 'FREE!' }}</span>
+    </div>
   </div>
 </div>
