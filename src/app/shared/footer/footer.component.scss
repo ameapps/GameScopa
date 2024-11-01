@@ -15,31 +15,51 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    border: 2px solid transparent; /* Bordo trasparente inizialmente */
-    border-radius: 10px; /* Bordo arrotondato */
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; /* Aggiunge transizioni */
-    padding: 1em; /* Aggiunge padding per un aspetto più "button" */
-    background-color: rgba(255, 255, 255, 0.1); /* Sfondo semi-trasparente */
-    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2); /* Ombra 3D per un effetto di profondità */
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    padding: 1em;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .store:hover, .friends:hover, .street-food:hover, .mini-games:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Ombra più intensa al passaggio del mouse */
-    border-color: #ffcc00; /* Cambia il colore del bordo al passaggio del mouse */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border-color: green;
+}
+
+.store:active, .friends:active, .street-food:active, .mini-games:active {
+    animation: bounce 0.6s ease forwards; /* Aggiunge l'effetto di rimbalzo al click */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .logo {
     width: 3em;
     height: 3em;
-    margin-bottom: 0.5em; /* Spazio tra l'immagine e il testo */
+    margin-bottom: 0.5em;
 }
 
 .text {
-    color: white; 
+    color: white;
     user-select: none;
-    text-align: center; /* Centra il testo */
-    font-weight: bold; /* Grassetto per il testo */
-    font-size: 1em; /* Aumenta la dimensione del testo */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Ombra per il testo */
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(0.9) translateY(5px);
+    }
+    60% {
+        transform: scale(1.05) translateY(-5px);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+    }
 }
