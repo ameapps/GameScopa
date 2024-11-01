@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 
 @Component({
   selector: 'app-games',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GamesComponent  implements OnInit {
 
-  constructor() { }
+  constructor(public common: CommonService) { }
 
   ngOnInit() {}
 
