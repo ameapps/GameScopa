@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="common.appConfig != null">
   <div class="store" *ngIf="common.appConfig.shared.footer.store.can_show" (click)="onStoreClick()">
       <img src="assets/GUI/footer/store.svg" alt="no-icon" class="logo">
     <div class="text">Store</div>

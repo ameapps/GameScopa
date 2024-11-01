@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="common.appConfig != null">
   <!-- Info sulla persona -->
   <div class="user-profile-container" *ngIf="common.appConfig.shared.header.user_info.can_show">
     <div class="user-profile">

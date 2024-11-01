@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="common.appConfig != null">
   <!-- Visualizzazione livello utente -->
   <div class="user-level" *ngIf="common.appConfig.shared.header.user_level.can_show">
     <div class="user-level-star">

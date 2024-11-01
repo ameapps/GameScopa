@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="common.appConfig != null">
   <div class="game-item-container" *ngFor="let game of games; let i = index;">
     <div class="play-now-difficulty-container">
       <div class="play-now-difficulty">
