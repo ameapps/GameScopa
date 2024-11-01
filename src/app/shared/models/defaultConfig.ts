@@ -13,6 +13,10 @@ export class DefaultConfigHome {
 export class DefaultConfigHomeGames {
     name = 'amatures'
     play_price = 0;
+    play_starter_style!: DefaultConfigHomeGamesPlayStarterStyle;
+}
+export class DefaultConfigHomeGamesPlayStarterStyle {
+    color!: string; 
 }
 export class DefaultConfigFriends {
 
