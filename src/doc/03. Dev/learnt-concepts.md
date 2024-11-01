@@ -19,3 +19,7 @@ Il posizionamento agisce in due modi:
     Qusto va fatto prestando in particolare attenzione a dare il 
     posiionamento a tutti gli elementi della gerarchia. 
     
+
+**CSS COME INGRANDIRE UN ELEMENTO HTML**
+Uso transform scale. 
+ES: transform: scale(1.05);
