@@ -10,7 +10,7 @@ export class UserLevelsComponent  implements OnInit {
   
   levelProgress: number = 70; // Ad esempio, 70%
 
-  constructor(private common: CommonService) { }
+  constructor(public common: CommonService) { }
 
   ngOnInit() {}
 

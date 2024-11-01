@@ -8,7 +8,7 @@ import { CommonService } from '../../services/common/common.service';
 })
 export class UserWorthComponent  implements OnInit {
 
-  constructor(private common: CommonService) { }
+  constructor(public common: CommonService) { }
 
   ngOnInit() {}
 

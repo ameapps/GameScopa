@@ -1,6 +1,6 @@
 <div class="container">
   <!-- Info sulla persona -->
-  <div class="user-profile-container">
+  <div class="user-profile-container" *ngIf="common.appConfig.shared.header.user_info.can_show">
     <div class="user-profile">
       <img src="assets/GUI/header/person.svg" alt="no-icon" class="person">
     </div>
@@ -9,7 +9,7 @@
     </div>
   </div>
   <!-- Info sul team della persona -->
-  <div class="user-team-container">
+  <div class="user-team-container" *ngIf="common.appConfig.shared.header.user_team.can_show">
     <div class="user-team-icon">
       <img src="assets/GUI/header/team.svg" alt="no-icon" class="person">
     </div>
