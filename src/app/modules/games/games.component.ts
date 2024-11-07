@@ -23,4 +23,8 @@ export class GamesComponent implements OnInit {
     console.log(this.games)
   }
 
+  public onClickedGame(game: DefaultConfigHomeGames, index: number) {
+    this.common.currentActiveGame = game;
+  }
+
 }
