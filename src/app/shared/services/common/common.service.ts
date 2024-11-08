@@ -20,7 +20,6 @@ import { Person } from "../../models/person";
 
     /**Metodo che inizializza i dati dell'app con i dati mock */
     useMockData() {
-        this.loggedPerson = this.appConfig.mock.data.user;
-        alert(this.loggedPerson)
+        this.loggedPerson = this.appConfig?.mock?.data?.user;
     }
 }
