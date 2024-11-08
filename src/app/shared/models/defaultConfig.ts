@@ -1,3 +1,5 @@
+import { Person } from "./person";
+
 export class DefaultConfig {
     home!: DefaultConfigHome;
     games!: DefaultConfigHomeGames[];
@@ -5,6 +7,16 @@ export class DefaultConfig {
     store!: DefaultConfigStore;
     streetFoods!: DefaultConfigStreetFoods;
     shared!: DefaultConfigStreetShared;
+    mock!: DefaultConfigStreetMock;
+}
+
+export class DefaultConfigStreetMock {
+    can_use_mock_data = false;
+    data!: DefaultConfigStreetMockData;
+}
+
+export class DefaultConfigStreetMockData {
+    user!: Person;
 }
 
 export class DefaultConfigHome {

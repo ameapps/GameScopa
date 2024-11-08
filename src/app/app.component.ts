@@ -10,11 +10,18 @@ import { CommonService } from './shared/services/common/common.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
+
+  // Se nel json di config è indicato che si possono usare dati mock
+  get canUseMockData(): boolean {
+    if (this.common?.appConfig?.mock?.can_use_mock_data) return false;
+    return this.common.appConfig.mock.can_use_mock_data;
+  }
+
   constructor(private http_service: HttpClient, private common: CommonService) {}
 
   async ngOnInit(): Promise<void> {
     this.common.appConfig = await this.loadAppConfig();
-    // alert(JSON.stringify(this.common.appConfig));
+    if (this.canUseMockData) this.common.useMockData();
   }
 
   async loadAppConfig(): Promise<DefaultConfig> {
