@@ -2,7 +2,7 @@ export class Person {
     //Punti esperienza accumulati dal player 
     points!: number; 
     //Livello raggiunto dall'utente
-    level!: number;
+    level!: number
     //Monete accumulate dal player 
     coins!: number;
     //Nome player
