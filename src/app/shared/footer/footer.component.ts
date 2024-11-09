@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../services/common/common.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -8,13 +9,14 @@ import { CommonService } from '../services/common/common.service';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(public common: CommonService) { }
+  constructor(public common: CommonService, private router: Router) { }
 
   ngOnInit() {}
 
   onStoreClick() {
     console.log('Store button clicked!');
     // Aggiungi qui la logica per gestire il clic sul pulsante Store
+    this.router.navigate(['/', 'store']);
   }
 
   onFriendsClick() {
