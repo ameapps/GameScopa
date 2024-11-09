@@ -10,5 +10,5 @@ export class Person {
     //Id del team in cui fa parte il palyer 
     teamId!: number; 
     //Nome del team in cui fa parte il palyer 
-    steamName!: string; 
+    teamName!: string; 
 }
