@@ -73,6 +73,7 @@
     "data": {
       "user": {
         "points": 99,
+        "level": 1,
         "coins": 99,
         "name": "User",
         "teamId": 1,
