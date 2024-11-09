@@ -29,6 +29,16 @@
       border-radius: 8px;
       cursor: pointer;
       transition: transform 0.2s ease; /* Transizione per effetto morbido */
+      .play-text-container {
+        width: 100%;
+        position: relative;
+        top: 0.5em;
+        display: flex;
+        justify-content: center;
+        .text {
+          color: white;
+        }
+      }
     }
     
     .cards-container:active {
