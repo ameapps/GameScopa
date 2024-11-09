@@ -1,14 +1,14 @@
 export class Person {
     //Punti esperienza accumulati dal player 
-    points!: number; 
+    points!: number | undefined; 
     //Livello raggiunto dall'utente
-    level!: number
+    level!: number | undefined
     //Monete accumulate dal player 
-    coins!: number;
+    coins!: number | undefined;
     //Nome player
-    name!: string; 
+    name!: string | undefined; 
     //Id del team in cui fa parte il palyer 
-    teamId!: number; 
+    teamId!: number | undefined; 
     //Nome del team in cui fa parte il palyer 
-    teamName!: string; 
+    teamName!: string | undefined; 
 }

@@ -21,6 +21,6 @@ import { Person } from "../../models/person";
     /**Metodo che inizializza i dati dell'app con i dati mock */
     useMockData() {
         this.loggedPerson = this.appConfig?.mock?.data?.user;
-        this.loggedPerson.level = Number((this.loggedPerson.points / 20).toFixed(0));
+        this.loggedPerson.level = Number((this.loggedPerson.points ?? 1 / 20).toFixed(0));
     }
 }

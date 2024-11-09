@@ -2,7 +2,7 @@
   <!-- Visualizzazione livello utente -->
   <div class="user-level" *ngIf="common.appConfig.shared.header.user_level.can_show">
     <div class="user-level-star">
-      <span class="user-level-star-text">{{ this.common.loggedPerson?.level ?? 0 }}</span>
+      <span class="user-level-star-text">{{ this.common.loggedPerson.level ?? 0 }}</span>
       <img src="assets/GUI/header/star.svg" alt="no-icon" class="star">
     </div>
     <div class="user-level-bar">
@@ -13,7 +13,7 @@
   <div class="user-coins" *ngIf="common.appConfig.shared.header.user_coins.can_show">
     <div class="user-coin-container-img">
       <img src="assets/GUI/header/coin.svg" alt="no-icon" class="user-coin-img">
-      <span class="user-level-coin-text">{{ this.common.loggedPerson?.coins ?? 0 }}</span>
+      <span class="user-level-coin-text">{{ this.common.loggedPerson.coins ?? 0 }}</span>
     </div>
     <div class="user-coins-bar"></div>
   </div>
