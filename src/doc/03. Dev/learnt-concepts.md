@@ -23,3 +23,11 @@ Il posizionamento agisce in due modi:
 **CSS COME INGRANDIRE UN ELEMENTO HTML**
 Uso transform scale. 
 ES: transform: scale(1.05);
+
+**ANGULAR COME NAVIGARE AD UNA ROTTA PRESENTE IN UN ALTRO MODULO**
+Ho provato dal Shared/Footer a navigare al componente store, ma il 
+router-outlet si trovava in homeModule. Non potevo navigare. 
+Pr riuscurci ho dovuto: 
+-   definire la rotta nel app.routing, che è condiviso tra tutti i moduli 
+-   definire che nel modulo Store, la rotta '' porta al compoente StoreComponent 
+(immagino che abbia dovuto farlo perchè la navigazione proviene da app.routing)

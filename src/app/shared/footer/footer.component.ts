@@ -22,15 +22,18 @@ export class FooterComponent implements OnInit {
   onFriendsClick() {
     console.log('Friends button clicked!');
     // Aggiungi qui la logica per gestire il clic sul pulsante Friends
+    this.router.navigate(['/', 'friends']);
   }
 
   onStreetFoodClick() {
     console.log('Street Food button clicked!');
     // Aggiungi qui la logica per gestire il clic sul pulsante Street Foods
+    this.router.navigate(['/', 'street-foods']);
   }
 
   onMiniGamesClick() {
     console.log('Mini Games button clicked!');
     // Aggiungi qui la logica per gestire il clic sul pulsante Mini Games
+    this.router.navigate(['/', 'mini-games']);
   }
 }
