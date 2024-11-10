@@ -62,6 +62,7 @@
       "user_team": { "can_show": true }
     },
     "footer": {
+      "home": { "can_show": true },
       "store": { "can_show": true },
       "friends": { "can_show": true },
       "street_foods": { "can_show": true },

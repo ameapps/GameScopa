@@ -6,7 +6,7 @@
     flex-direction: row;
 }
 
-.store, .friends, .street-food, .mini-games {
+.store, .home, .friends, .street-food, .mini-games {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -23,13 +23,13 @@
     box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.store:hover, .friends:hover, .street-food:hover, .mini-games:hover {
+.store:hover, .home:hover, .friends:hover, .street-food:hover, .mini-games:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     border-color: green;
 }
 
-.store:active, .friends:active, .street-food:active, .mini-games:active {
+.store:active, .hover:active, .friends:active, .street-food:active, .mini-games:active {
     animation: bounce 0.6s ease forwards; /* Aggiunge l'effetto di rimbalzo al click */
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
 }

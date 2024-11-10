@@ -1,4 +1,8 @@
 <div class="container" *ngIf="common.appConfig != null">
+  <div class="home" *ngIf="common.appConfig.shared.footer.home.can_show" (click)="onHomeClick()">
+      <img src="assets/GUI/footer/home.svg" alt="no-icon" class="logo">
+    <div class="text">Home</div>
+  </div>
   <div class="store" *ngIf="common.appConfig.shared.footer.store.can_show" (click)="onStoreClick()">
       <img src="assets/GUI/footer/store.svg" alt="no-icon" class="logo">
     <div class="text">Store</div>

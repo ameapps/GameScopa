@@ -31,6 +31,12 @@ export class FooterComponent implements OnInit {
     this.router.navigate(['/', 'street-foods']);
   }
 
+  onHomeClick() {
+    console.log('Street Food button clicked!');
+    // Aggiungi qui la logica per gestire il clic sul pulsante Street Foods
+    this.router.navigate(['/', 'home']);
+  }
+
   onMiniGamesClick() {
     console.log('Mini Games button clicked!');
     // Aggiungi qui la logica per gestire il clic sul pulsante Mini Games
