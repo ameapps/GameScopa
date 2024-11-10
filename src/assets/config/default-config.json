@@ -73,7 +73,7 @@
     "can_use_mock_data": true,
     "data": {
       "user": {
-        "points": 99,
+        "points": 180,
         "coins": 99,
         "name": "User",
         "teamId": 1,

@@ -22,6 +22,6 @@ import { Person } from "../../models/person";
     useMockData() {
         this.loggedPerson = this.appConfig?.mock?.data?.user;
         console.log('this.loggedPerson', this.loggedPerson)
-        this.loggedPerson.level = Number(((this.loggedPerson.points ?? 1) / 20).toFixed(0));
+        this.loggedPerson.level = Number(((this.loggedPerson.points ?? 1) / 100).toFixed(0));
     }
 }
