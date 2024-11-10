@@ -23,6 +23,11 @@ const routes: Routes = [
       import('./modules/street-foods/street-foods.module').then((m) => m.StreetFoodsModule),
   },
   {
+    path: 'mini-games',
+    loadChildren: () =>
+      import('./modules/mini-games/mini-games.module').then((m) => m.MiniGamesModule),
+  },
+  {
     path: 'shared',
     loadChildren: () =>
       import('./shared/shared.module').then((m) => m.SharedModule),
