@@ -13,3 +13,6 @@ Ho deciso che NON deve esserci un modulo dedicato al gioco perchè non
 deve essere possibile accedere ad un gioco usando una URL. Questo 
 perchè a certi giochi si può accederes solo con certi soldi e permettere
 l'accesso via URL significa dover implementare una guard. 
+UPDATE: ci ho ripensato. Creo un modulo game che prende dei parametri nel 
+query string. Se faccio così, potrò riusare il modulo anche nella partita 
+tra due giocatori.
