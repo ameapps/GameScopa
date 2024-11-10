@@ -18,7 +18,7 @@ const routes: Routes = [
       import('./modules/store/store.module').then((m) => m.StoreModule),
   },
   {
-    path: 'streetFoods',
+    path: 'street-foods',
     loadChildren: () =>
       import('./modules/street-foods/street-foods.module').then((m) => m.StreetFoodsModule),
   },
