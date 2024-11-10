@@ -7,3 +7,9 @@ bar mostra valori in percentuale da 1 a 100.
 Conviene quindi che la logica per visualizzare i livelli basata sui punti
 ottenuti sia congruente con il funzionamento dell''interfaccia nel visualizzare
 il livello. 
+
+**MODULO DEDICATO ALLA PARTITA CONTRO PC/ALTRO GIOCATORE**
+Ho deciso che NON deve esserci un modulo dedicato al gioco perchè non 
+deve essere possibile accedere ad un gioco usando una URL. Questo 
+perchè a certi giochi si può accederes solo con certi soldi e permettere
+l'accesso via URL significa dover implementare una guard. 
