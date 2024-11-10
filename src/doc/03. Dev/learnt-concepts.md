@@ -31,3 +31,17 @@ Pr riuscurci ho dovuto:
 -   definire la rotta nel app.routing, che è condiviso tra tutti i moduli 
 -   definire che nel modulo Store, la rotta '' porta al compoente StoreComponent 
 (immagino che abbia dovuto farlo perchè la navigazione proviene da app.routing)
+
+**ROUTING COSA HO CAPITO FINORA**
+-   L'accesso ai moduli principali del progetto (moduli al primo livello) passa da app.routing 
+    -   per raggiungere uno dei moduli principali è necessario: 
+        -   definire nell'app routing i nomi delle rotte 
+            ES: const routes: Routes = [{path: 'home', loadChildren: () => import('./modules/home/home.module').then((m) => m.HomePageModule)}]
+        -   nel module.routing del modulo principale che si vuole raggiungere, definire 
+            nell'array un oggetto con path vuoto. 
+            ES: const routes: Routes = [{path: '', component: HomePageComponent}];
+    -   per raggiungere uno dei moduli importati: 
+        -   this.router.navigate(['/', 'games'])
+        -   in games.routing.routing.ts 
+            const routes: Routes = [{ path: 'games', component: GamesComponent }];
+            Qui cioè non serve dichiarare path = ''
