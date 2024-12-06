@@ -1,6 +1,7 @@
 <div class="container" *ngIf="common.appConfig != null">
-  <div class="game-item-container" *ngFor="let game of games; let i = index;" [style.backgroundColor]="game.play_starter_style.color">
-    <div class="play-now-difficulty-container" (click)="onClickedGame(game, i)">
+  <!-- Bottoni per avviare un gioco -->
+  <div class="game-item-container" *ngFor="let game of games; let i = index;" [style.backgroundColor]="game.play_starter_style.color" [style.display]="canShowGamesSelector ? '' : 'none'" (click)="onClickedGame(game, i)">
+    <div class="play-now-difficulty-container">
       <div class="play-now-difficulty">
         <span class="text">{{ i }}</span>
       </div>

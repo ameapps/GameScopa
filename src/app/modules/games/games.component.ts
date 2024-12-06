@@ -11,6 +11,10 @@ export class GamesComponent implements OnInit {
 
   //#region variables
 
+  public get canShowGamesSelector(): boolean {
+    return this.common.currentActiveGame == null;
+  }
+
   public get games(): DefaultConfigHomeGames[] {
     return this.common.appConfig.games ?? [];
   }
