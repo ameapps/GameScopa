@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DefaultConfigHomeGames } from 'src/app/shared/models/defaultConfig';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 
@@ -21,7 +22,7 @@ export class GamesComponent implements OnInit {
 
   //#endregion
 
-  constructor(public common: CommonService) { }
+  constructor(public common: CommonService, private router: Router) { }
 
   ngOnInit() {
     console.log(this.games)
@@ -29,6 +30,7 @@ export class GamesComponent implements OnInit {
 
   public onClickedGame(game: DefaultConfigHomeGames, index: number) {
     this.common.currentActiveGame = game;
+    this.router.navigate(['/', 'scopa']);
   }
 
 }
