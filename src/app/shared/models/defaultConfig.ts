@@ -24,6 +24,11 @@ export class DefaultConfigHomeGames {
   name = 'amatures';
   play_price = 0;
   play_starter_style!: DefaultConfigHomeGamesPlayStarterStyle;
+  card!: DefaultCardConfig;
+}
+export class DefaultCardConfig {
+  group: 'bergamasche' | 'bolognesi' | 'napoletane' | 'piacentine' | 'siciliane' = 'siciliane';
+  extension: 'png' | 'svg' = 'png';
 }
 export class DefaultConfigHomeGamesPlayStarterStyle {
   color!: string;

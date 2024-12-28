@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 import { GameService } from 'src/app/shared/services/game/game.service';
 
 @Component({
@@ -6,10 +7,14 @@ import { GameService } from 'src/app/shared/services/game/game.service';
   templateUrl: './game-scopa.component.html',
   styleUrls: ['./game-scopa.component.scss'],
 })
-export class GameScopaComponent  implements OnInit {
+export class GameScopaComponent implements OnInit {
 
-  constructor(private game_service: GameService) { }
+  constructor(public game_service: GameService, public common: CommonService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    //1. Inizializzo le carte del gioco secondo le impostazioni definite
+    this.game_service.cards = this.game_service.initGameCards(this.common.currentActiveGame);
+    console.log('carte costruite', this.game_service.cards)
+  }
 
 }

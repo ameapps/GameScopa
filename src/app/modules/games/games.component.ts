@@ -25,7 +25,7 @@ export class GamesComponent implements OnInit {
   constructor(public common: CommonService, private router: Router) { }
 
   ngOnInit() {
-    console.log(this.games)
+    console.log(this.games);
   }
 
   public onClickedGame(game: DefaultConfigHomeGames, index: number) {
