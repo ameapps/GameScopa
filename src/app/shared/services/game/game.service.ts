@@ -1,37 +1,91 @@
-import { Injectable, OnInit, OnDestroy } from "@angular/core";
-import { DefaultCardConfig, DefaultConfig, DefaultConfigHomeGames } from "../../models/defaultConfig";
-import { Person } from "../../models/person";
-import { Card } from "../../models/card";
-import { MockCardsProviderService } from "../provider/mock-cards-provider/mock-cards-provider.service";
-import { CommonService } from "../common/common.service";
+import { Injectable, OnInit, OnDestroy } from '@angular/core';
+import {
+  DefaultCardConfig,
+  DefaultConfig,
+  DefaultConfigHomeGames,
+} from '../../models/defaultConfig';
+import { Person } from '../../models/person';
+import { Card } from '../../models/card';
+import { MockCardsProviderService } from '../provider/mock-cards-provider/mock-cards-provider.service';
+import { CommonService } from '../common/common.service';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class GameService implements OnDestroy {
-    // #region variables
+  // #region variables
 
-    //Carte del gioco
-    cards: Card[] = [];
-    
-    // #endregion
+  cards: Card[] = [];
+  tableCards: Card[] = [];
+  playerCards: Card[] = [];
 
-    constructor(private common: CommonService, private mock_cards_provider: MockCardsProviderService) { }
+  // #endregion
 
-    ngOnDestroy(): void {
-        throw new Error("Method not implemented.");
+  constructor(
+    private common: CommonService,
+    private mock_cards_provider: MockCardsProviderService
+  ) {}
+
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
+  }
+
+  initGameCards(currentActiveGame: DefaultConfigHomeGames): Card[] {
+    try {
+      let cards: Card[] = [];
+      console.log('currentActiveGame', currentActiveGame);
+      if (this.common.canUseMockData)
+        cards = this.mock_cards_provider.initGameCards(currentActiveGame, {
+          cards: this.cards,
+          tableCards: this.tableCards,
+          playerCards: this.playerCards,
+        });
+
+      return cards;
+    } catch (error) {
+      console.error(
+        'Could not init the GAME cards using the specified settings'
+      );
+      return [];
     }
+  }
 
-    initGameCards(currentActiveGame: DefaultConfigHomeGames): Card[] {
-        try {
-            let cards: Card[] = [];
-            console.log('currentActiveGame', currentActiveGame)
-            if (this.common.canUseMockData) cards = this.mock_cards_provider.initGameCards(currentActiveGame);
+  initPlayerCards(currentActiveGame: DefaultConfigHomeGames): Card[] {
+    try {
+      let cards: Card[] = [];
+      console.log('currentActiveGame', currentActiveGame);
+      if (this.common.canUseMockData)
+        cards = this.mock_cards_provider.initPlayerCards(currentActiveGame, {
+          cards: this.cards,
+          tableCards: this.tableCards,
+          playerCards: this.playerCards,
+        });
 
-            return cards;
-        } catch (error) {
-            console.error('Could not init the game cards using the specified settings');
-            return [];
-        }
+      return cards;
+    } catch (error) {
+      console.error(
+        'Could not init the PLAYER game cards using the specified settings'
+      );
+      return [];
     }
+  }
+  initTableCards(currentActiveGame: DefaultConfigHomeGames): Card[] {
+    try {
+      let cards: Card[] = [];
+      console.log('currentActiveGame', currentActiveGame);
+      if (this.common.canUseMockData)
+        cards = this.mock_cards_provider.initTableCards(currentActiveGame, {
+          cards: this.cards,
+          tableCards: this.tableCards,
+          playerCards: this.playerCards,
+        });
+
+      return cards;
+    } catch (error) {
+      console.error(
+        'Could not init the TABLE game cards using the specified settings'
+      );
+      return [];
+    }
+  }
 }
