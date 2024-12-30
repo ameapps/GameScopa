@@ -5,9 +5,15 @@ import { DefaultConfigHomeGames } from 'src/app/shared/models/defaultConfig';
 @Injectable({
   providedIn: 'root',
 })
+/**Servizio che si comporta come da BE per l'applicazione. Il suo scopo è quello 
+ * di poter testare l'app.
+ */
 export class MockCardsProviderService {
-  
   //#region  variables
+  cards: Card[] = [];
+  tableCards: Card[] = [];
+  player_a_cards: Card[] = [];
+  player_b_cards: Card[] = [];
   SCOPA_CARDS_NUMBER = 40;
   // #endregion
 
@@ -15,29 +21,8 @@ export class MockCardsProviderService {
 
   //#region methods
 
-  public initGameCards(
-    currentActiveGame: DefaultConfigHomeGames,
-    status?: GameStatus
-  ): Card[] {
-    try {
-      console.log('all cards', currentActiveGame);
-      //1. Se l'utente non ha carte, le creo tutte (la partita è appena iniziata)
-      let cards: Card[] = [];
-      if (!this.isGameRunning(status)) cards = this.createAllCards(currentActiveGame);
-      //2. 
-
-
-      return cards;
-    } catch (error) {
-      console.error(
-        'Could not init the game cards using the specified settings'
-      );
-      return [];
-    }
-  }
-
   private isGameRunning(status: GameStatus | undefined): boolean {
-    return (status?.cards?.length ?? 0) > 0;
+    return (this.cards?.length ?? 0) > 0;
   }
 
   private createAllCards(currentActiveGame: DefaultConfigHomeGames) {
@@ -84,11 +69,33 @@ export class MockCardsProviderService {
     return undefined;
   }
 
-  public initTableCards(
+  public getTableCards(
     currentActiveGame: DefaultConfigHomeGames,
     status?: GameStatus
   ): Card[] {
-    throw new Error('Method not implemented.');
+    try {
+      console.log('all cards', currentActiveGame);
+      //1. Se l'utente non ha carte, le creo tutte (la partita è appena iniziata)
+      let cards: Card[] = [];
+      if (!this.isGameRunning(status)) {
+        //2. Creo tutte le carte e faccio la prima distribuzione 
+        this.cards = this.createAllCards(currentActiveGame);
+        //3. Prendo le ultime 3 carte da this.cards e le salvo 
+        this.player_a_cards = this.cards.slice(-3);
+        this.player_b_cards = this.cards.slice(-3);
+        const takenCards = [...this.player_a_cards, ...this.player_b_cards];
+        takenCards.forEach((element) => {
+          this.cards.pop();
+        });
+      }
+        
+      return cards;
+    } catch (error) {
+      console.error(
+        'Could not init the game cards using the specified settings'
+      );
+      return [];
+    }
   }
 
   public initPlayerCards(
@@ -102,7 +109,6 @@ export class MockCardsProviderService {
 }
 
 export class GameStatus {
-  cards: Card[] = [];
   tableCards: Card[] = [];
   playerCards: Card[] = [];
 }

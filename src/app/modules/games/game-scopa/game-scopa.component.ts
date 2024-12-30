@@ -13,8 +13,6 @@ export class GameScopaComponent implements OnInit {
 
   ngOnInit() {
     //1. Inizializzo le carte del gioco secondo le impostazioni definite
-    this.game_service.cards = this.game_service.initGameCards(this.common.currentActiveGame);
-    console.log('carte costruite', this.game_service.cards)
     this.game_service.tableCards = this.game_service.initTableCards(this.common.currentActiveGame);
     this.game_service.playerCards = this.game_service.initPlayerCards(this.common.currentActiveGame);
   }

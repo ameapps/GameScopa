@@ -15,10 +15,9 @@ import { CommonService } from '../common/common.service';
 export class GameService implements OnDestroy {
   // #region variables
 
-  cards: Card[] = [];
   tableCards: Card[] = [];
   playerCards: Card[] = [];
-
+  
   // #endregion
 
   constructor(
@@ -30,33 +29,12 @@ export class GameService implements OnDestroy {
     throw new Error('Method not implemented.');
   }
 
-  initGameCards(currentActiveGame: DefaultConfigHomeGames): Card[] {
-    try {
-      let cards: Card[] = [];
-      console.log('currentActiveGame', currentActiveGame);
-      if (this.common.canUseMockData)
-        cards = this.mock_cards_provider.initGameCards(currentActiveGame, {
-          cards: this.cards,
-          tableCards: this.tableCards,
-          playerCards: this.playerCards,
-        });
-
-      return cards;
-    } catch (error) {
-      console.error(
-        'Could not init the GAME cards using the specified settings'
-      );
-      return [];
-    }
-  }
-
   initPlayerCards(currentActiveGame: DefaultConfigHomeGames): Card[] {
     try {
       let cards: Card[] = [];
       console.log('currentActiveGame', currentActiveGame);
       if (this.common.canUseMockData)
         cards = this.mock_cards_provider.initPlayerCards(currentActiveGame, {
-          cards: this.cards,
           tableCards: this.tableCards,
           playerCards: this.playerCards,
         });
@@ -69,13 +47,19 @@ export class GameService implements OnDestroy {
       return [];
     }
   }
+
+  /**
+   * Metodo che recupera dal BE o dal provider dei dati mock le carte 
+   * da visualizzare sul tavolo 
+   * @param currentActiveGame impostazione del gioco corrente (json)
+   * @returns 
+   */
   initTableCards(currentActiveGame: DefaultConfigHomeGames): Card[] {
     try {
       let cards: Card[] = [];
       console.log('currentActiveGame', currentActiveGame);
       if (this.common.canUseMockData)
-        cards = this.mock_cards_provider.initTableCards(currentActiveGame, {
-          cards: this.cards,
+        cards = this.mock_cards_provider.getTableCards(currentActiveGame, {
           tableCards: this.tableCards,
           playerCards: this.playerCards,
         });

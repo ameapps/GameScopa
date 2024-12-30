@@ -5,7 +5,7 @@
     <img src="assets\cards\covered.png" alt="no-icon" srcset="">
   </div>
   <!-- Carte sul tavolo -->
-  <div class="table-cards"> <app-scopa-card *ngFor="let card of this.game_service.cards"
+  <div class="table-cards"> <app-scopa-card *ngFor="let card of this.game_service.tableCards"
       imgPath="{{card.path}}"></app-scopa-card>
   </div>
   <!-- Carte del giocatore corrente -->
