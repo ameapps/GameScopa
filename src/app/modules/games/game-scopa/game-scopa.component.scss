@@ -41,6 +41,7 @@
         /* Stili per browser Webkit (Chrome, Safari, Edge) */
         &::-webkit-scrollbar {
             width: 12px; /* Larghezza della scrollbar */
+            border-radius: 25px;
         }
 
         &::-webkit-scrollbar-thumb {
@@ -51,7 +52,7 @@
 
         &::-webkit-scrollbar-track {
             background-color: #0000ff; /* Colore dello sfondo della scrollbar */
-            border-radius: 10px;
+            border-radius: 25px;
         }
 
         &::-webkit-scrollbar-button {
