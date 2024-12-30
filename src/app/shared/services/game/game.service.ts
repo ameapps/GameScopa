@@ -33,12 +33,20 @@ export class GameService implements OnDestroy {
     try {
       let cards: Card[] = [];
       console.log('currentActiveGame', currentActiveGame);
-      if (this.common.canUseMockData)
+      if (this.common.canUseMockData) {
+        //1. Assegnamento carte mock al giocatore 1
         cards = this.mock_cards_provider.player_a_cards =
           this.mock_cards_provider.getPlayerCards(currentActiveGame, {
             tableCards: this.tableCards,
             playerCards: this.playerCards,
           });
+        //2. Assegnamento carte mock al giocatore 2
+        this.mock_cards_provider.player_b_cards =
+          this.mock_cards_provider.getPlayerCards(currentActiveGame, {
+            tableCards: this.tableCards,
+            playerCards: this.playerCards,
+          });
+      }
 
       return cards;
     } catch (error) {
