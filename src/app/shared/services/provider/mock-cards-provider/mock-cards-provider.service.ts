@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { shuffleArray } from 'src/app/shared/helpers/array.helper';
 import { Card } from 'src/app/shared/models/card';
 import { DefaultConfigHomeGames } from 'src/app/shared/models/defaultConfig';
 
@@ -26,15 +27,14 @@ export class MockCardsProviderService {
    */
   public startGame(currentActiveGame: DefaultConfigHomeGames): Card[] {
     try {
-      return this.createAllCards(currentActiveGame);
+      const allCards: Card[] = this.createAllCards(currentActiveGame);
+      //TODO: shaffle the cards : gli elementi dell'array devono essere rimescolati a caso
+      const shaffled = shuffleArray(allCards) ?? allCards;
+      return shaffled;
     } catch (error) {
       console.error('Error initialing the game creating the new cards');
       return [];
     }
-  }
-
-  private isGameRunning(status: GameStatus | undefined): boolean {
-    return (this.cards?.length ?? 0) > 0;
   }
 
   private createAllCards(currentActiveGame: DefaultConfigHomeGames) {
@@ -89,7 +89,7 @@ export class MockCardsProviderService {
   ): Card[] {
     try {
       console.log('all cards', currentActiveGame);
-      //1. Estraggo 4 carte dal mazzo 
+      //1. Estraggo 4 carte dal mazzo
       let allCards = this.getAllGameCards(currentActiveGame);
       let tableCards = this.cards.slice(-4);
       //2. Riduco il mazzp di 4 carte
@@ -105,7 +105,9 @@ export class MockCardsProviderService {
   }
 
   private getAllGameCards(currentActiveGame: DefaultConfigHomeGames) {
-    return this.cards.length === 40 ? this.cards : this.createAllCards(currentActiveGame);
+    return this.cards.length === 40
+      ? this.cards
+      : this.createAllCards(currentActiveGame);
   }
 
   public getPlayerCards(
@@ -113,7 +115,7 @@ export class MockCardsProviderService {
     status?: GameStatus
   ): Card[] {
     try {
-      //1. Estraggo 4 carte dal mazzo 
+      //1. Estraggo 4 carte dal mazzo
       let allCards = this.getAllGameCards(currentActiveGame);
       let playerCards = this.cards.slice(-3);
       //2. Riduco il mazzp di 4 carte
