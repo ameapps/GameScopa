@@ -20,10 +20,12 @@ export class MockCardsProviderService {
     status?: GameStatus
   ): Card[] {
     try {
+      console.log('all cards', currentActiveGame);
       //1. Se l'utente non ha carte, le creo tutte (la partita è appena iniziata)
       let cards: Card[] = [];
       if (!this.isGameRunning(status)) cards = this.createAllCards(currentActiveGame);
-      console.log('all cards', currentActiveGame);
+      //2. 
+
 
       return cards;
     } catch (error) {
