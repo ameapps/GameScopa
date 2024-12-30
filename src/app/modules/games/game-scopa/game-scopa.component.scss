@@ -28,11 +28,35 @@
         height: 100%;
         position: relative;
         display: flex;
-        display: flex;
         overflow-x: hidden;
+        overflow-y: scroll; /* Abilita lo scroll verticale */
         flex-wrap: wrap;
         column-gap: 1em;
         padding: 4em;
+
+        /* Personalizzazione della scrollbar */
+        scrollbar-width: thin;
+        scrollbar-color: red #0000ff; /* Colore della maniglia e dello sfondo */
+
+        /* Stili per browser Webkit (Chrome, Safari, Edge) */
+        &::-webkit-scrollbar {
+            width: 12px; /* Larghezza della scrollbar */
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: red; /* Colore della maniglia */
+            border-radius: 10px; /* Rende la maniglia arrotondata */
+            border: 3px solid #e0e0e0; /* Aggiunge un bordo per creare un effetto di contrasto */
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: #0000ff; /* Colore dello sfondo della scrollbar */
+            border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-button {
+            display: none; /* Nasconde i pulsanti della scrollbar */
+        }
     }
 
     .player-cards {
