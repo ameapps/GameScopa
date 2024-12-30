@@ -4,16 +4,22 @@ import { Person } from "../../models/person";
 
 @Injectable({
     providedIn: 'root',
-  })
-  export class CommonService implements OnInit, OnDestroy {
+})
+export class CommonService implements OnDestroy {
+
+    // #region variables
     appConfig!: DefaultConfig;
     currentActiveGame!: DefaultConfigHomeGames;
-    
+
     loggedPerson!: Person;
-    
-    ngOnInit(): void {
-        throw new Error("Method not implemented.");
+
+    // Se nel json di config è indicato che si possono usare dati mock
+    public get canUseMockData(): boolean {
+        return this.appConfig.mock.can_use_mock_data;
     }
+
+    //#endregion
+
     ngOnDestroy(): void {
         throw new Error("Method not implemented.");
     }
