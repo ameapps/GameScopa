@@ -21,7 +21,8 @@ export class MockCardsProviderService {
   ): Card[] {
     try {
       //1. Se l'utente non ha carte, le creo tutte (la partita è appena iniziata)
-      const cards: Card[] = this.createAllCards(currentActiveGame);
+      let cards: Card[] = [];
+      if (!this.isGameRunning(status)) cards = this.createAllCards(currentActiveGame);
       console.log('all cards', currentActiveGame);
 
       return cards;
@@ -31,6 +32,10 @@ export class MockCardsProviderService {
       );
       return [];
     }
+  }
+
+  private isGameRunning(status: GameStatus | undefined): boolean {
+    return (status?.cards?.length ?? 0) > 0;
   }
 
   private createAllCards(currentActiveGame: DefaultConfigHomeGames) {
