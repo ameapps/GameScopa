@@ -17,7 +17,7 @@ export class GameService implements OnDestroy {
 
   tableCards: Card[] = [];
   playerCards: Card[] = [];
-  
+
   // #endregion
 
   constructor(
@@ -29,12 +29,12 @@ export class GameService implements OnDestroy {
     throw new Error('Method not implemented.');
   }
 
-  initPlayerCards(currentActiveGame: DefaultConfigHomeGames): Card[] {
+  public getPlayerCards(currentActiveGame: DefaultConfigHomeGames): Card[] {
     try {
       let cards: Card[] = [];
       console.log('currentActiveGame', currentActiveGame);
       if (this.common.canUseMockData)
-        cards = this.mock_cards_provider.initPlayerCards(currentActiveGame, {
+        cards = this.mock_cards_provider.getPlayerCards(currentActiveGame, {
           tableCards: this.tableCards,
           playerCards: this.playerCards,
         });
@@ -48,13 +48,30 @@ export class GameService implements OnDestroy {
     }
   }
 
+  public startGame(currentActiveGame: DefaultConfigHomeGames) {
+    try {
+      let cards: Card[] = [];
+      console.log('currentActiveGame', currentActiveGame);
+      if (this.common.canUseMockData)
+        this.mock_cards_provider.cards =
+          this.mock_cards_provider.startGame(currentActiveGame);
+      //TODO: sviluppare la parte filebase
+      return [];
+    } catch (error) {
+      console.error(
+        'Could not init the PLAYER game cards using the specified settings'
+      );
+      return [];
+    }
+  }
+
   /**
-   * Metodo che recupera dal BE o dal provider dei dati mock le carte 
-   * da visualizzare sul tavolo 
+   * Metodo che recupera dal BE o dal provider dei dati mock le carte
+   * da visualizzare sul tavolo
    * @param currentActiveGame impostazione del gioco corrente (json)
-   * @returns 
+   * @returns
    */
-  initTableCards(currentActiveGame: DefaultConfigHomeGames): Card[] {
+  public getTableCards(currentActiveGame: DefaultConfigHomeGames): Card[] {
     try {
       let cards: Card[] = [];
       console.log('currentActiveGame', currentActiveGame);

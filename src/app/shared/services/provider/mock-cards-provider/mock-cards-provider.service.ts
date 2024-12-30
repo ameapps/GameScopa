@@ -5,7 +5,7 @@ import { DefaultConfigHomeGames } from 'src/app/shared/models/defaultConfig';
 @Injectable({
   providedIn: 'root',
 })
-/**Servizio che si comporta come da BE per l'applicazione. Il suo scopo è quello 
+/**Servizio che si comporta come da BE per l'applicazione. Il suo scopo è quello
  * di poter testare l'app.
  */
 export class MockCardsProviderService {
@@ -20,6 +20,18 @@ export class MockCardsProviderService {
   constructor() {}
 
   //#region methods
+
+  /**Metodo che inizializza il gioco, compiendo le seguenti operazioni:
+   * -  creando le carte nel BE con cui sarà svolta la partita
+   */
+  public startGame(currentActiveGame: DefaultConfigHomeGames): Card[] {
+    try {
+      return this.createAllCards(currentActiveGame);
+    } catch (error) {
+      console.error('Error initialing the game creating the new cards');
+      return [];
+    }
+  }
 
   private isGameRunning(status: GameStatus | undefined): boolean {
     return (this.cards?.length ?? 0) > 0;
@@ -69,27 +81,21 @@ export class MockCardsProviderService {
     return undefined;
   }
 
+  /**Metodo che dalle 40 carte della scopa, recupera 4 carte da mettere sul tavolo.
+   */
   public getTableCards(
     currentActiveGame: DefaultConfigHomeGames,
     status?: GameStatus
   ): Card[] {
     try {
       console.log('all cards', currentActiveGame);
-      //1. Se l'utente non ha carte, le creo tutte (la partita è appena iniziata)
-      let cards: Card[] = [];
-      if (!this.isGameRunning(status)) {
-        //2. Creo tutte le carte e faccio la prima distribuzione 
-        this.cards = this.createAllCards(currentActiveGame);
-        //3. Prendo le ultime 3 carte da this.cards e le salvo 
-        this.player_a_cards = this.cards.slice(-3);
-        this.player_b_cards = this.cards.slice(-3);
-        const takenCards = [...this.player_a_cards, ...this.player_b_cards];
-        takenCards.forEach((element) => {
-          this.cards.pop();
-        });
-      }
-        
-      return cards;
+      //1. Estraggo 4 carte dal mazzo 
+      let allCards = this.cards.length === 40 ? this.cards : this.createAllCards(currentActiveGame);
+      let tableCards = this.cards.slice(-4);
+      //2. Riduco il mazzp di 4 carte
+      allCards.splice(-4);
+
+      return tableCards;
     } catch (error) {
       console.error(
         'Could not init the game cards using the specified settings'
@@ -98,11 +104,16 @@ export class MockCardsProviderService {
     }
   }
 
-  public initPlayerCards(
+  public getPlayerCards(
     currentActiveGame: DefaultConfigHomeGames,
     status?: GameStatus
   ): Card[] {
-    throw new Error('Method not implemented.');
+    try {
+      return [];
+    } catch (error) {
+      console.error('Could not get the player cards', error);
+      return [];
+    }
   }
 
   // #endregion
