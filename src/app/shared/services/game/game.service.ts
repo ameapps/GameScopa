@@ -26,8 +26,7 @@ export class GameService implements OnDestroy {
         try {
             let cards: Card[] = [];
             console.log('currentActiveGame', currentActiveGame)
-            // if (this.common.canUseMockData) 
-            cards = this.mock_cards_provider.initGameCards(currentActiveGame);
+            if (this.common.canUseMockData) cards = this.mock_cards_provider.initGameCards(currentActiveGame);
 
             return cards;
         } catch (error) {
