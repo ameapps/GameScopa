@@ -90,7 +90,7 @@ export class MockCardsProviderService {
     try {
       console.log('all cards', currentActiveGame);
       //1. Estraggo 4 carte dal mazzo 
-      let allCards = this.cards.length === 40 ? this.cards : this.createAllCards(currentActiveGame);
+      let allCards = this.getAllGameCards(currentActiveGame);
       let tableCards = this.cards.slice(-4);
       //2. Riduco il mazzp di 4 carte
       allCards.splice(-4);
@@ -104,12 +104,23 @@ export class MockCardsProviderService {
     }
   }
 
+  private getAllGameCards(currentActiveGame: DefaultConfigHomeGames) {
+    return this.cards.length === 40 ? this.cards : this.createAllCards(currentActiveGame);
+  }
+
   public getPlayerCards(
     currentActiveGame: DefaultConfigHomeGames,
     status?: GameStatus
   ): Card[] {
     try {
-      return [];
+      //1. Estraggo 4 carte dal mazzo 
+      let allCards = this.getAllGameCards(currentActiveGame);
+      let playerCards = this.cards.slice(-3);
+      //2. Riduco il mazzp di 4 carte
+      allCards.splice(-3);
+      console.log('player cards', playerCards);
+
+      return playerCards;
     } catch (error) {
       console.error('Could not get the player cards', error);
       return [];

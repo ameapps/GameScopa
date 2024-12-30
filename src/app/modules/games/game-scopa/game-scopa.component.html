@@ -1,13 +1,21 @@
 <div class="content">
   <div class="challanger-cards">
-    <img src="assets\cards\covered.png" alt="no-icon" srcset="">
-    <img src="assets\cards\covered.png" alt="no-icon" srcset="">
-    <img src="assets\cards\covered.png" alt="no-icon" srcset="">
+    <img src="assets\cards\covered.png" alt="no-icon" srcset="" />
+    <img src="assets\cards\covered.png" alt="no-icon" srcset="" />
+    <img src="assets\cards\covered.png" alt="no-icon" srcset="" />
   </div>
   <!-- Carte sul tavolo -->
-  <div class="table-cards"> <app-scopa-card *ngFor="let card of this.game_service.tableCards"
-      imgPath="{{card.path}}"></app-scopa-card>
+  <div class="table-cards">
+    <app-scopa-card
+      *ngFor="let card of this.game_service.tableCards"
+      imgPath="{{ card.path }}"
+    ></app-scopa-card>
   </div>
   <!-- Carte del giocatore corrente -->
-  <div class="player-cards"></div>
+  <div class="player-cards">
+    <app-scopa-card
+      *ngFor="let card of this.game_service.playerCards"
+      imgPath="{{ card.path }}"
+    ></app-scopa-card>
+  </div>
 </div>
