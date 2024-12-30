@@ -28,6 +28,7 @@
         height: 100%;
         position: relative;
         display: flex;
+        justify-content: center;
         overflow-x: hidden;
         overflow-y: scroll; /* Abilita lo scroll verticale */
         flex-wrap: wrap;
