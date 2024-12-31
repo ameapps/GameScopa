@@ -8,6 +8,7 @@
   <div class="table-cards">
     <app-scopa-card
       *ngFor="let card of this.game_service.tableCards"
+      [canHover]="false"
       imgPath="{{ card.path }}"
     ></app-scopa-card>
   </div>
@@ -15,6 +16,7 @@
   <div class="player-cards">
     <app-scopa-card
       *ngFor="let card of this.game_service.playerCards"
+      [canHover]="true"
       imgPath="{{ card.path }}"
     ></app-scopa-card>
   </div>

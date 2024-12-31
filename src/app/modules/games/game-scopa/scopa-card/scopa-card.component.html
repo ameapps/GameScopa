@@ -1,3 +1,3 @@
 <div class="container">
-  <img [src]="imgPath" alt="no-card-icon">
+  <img [ngClass]="canHover ? 'img-hover' : 'img-no-hover' " [src]="imgPath" alt="no-card-icon">
 </div>

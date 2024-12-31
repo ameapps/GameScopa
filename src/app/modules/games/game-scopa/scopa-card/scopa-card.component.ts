@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ScopaCardComponent  implements OnInit {
 
   //#region variables 
+  @Input() canHover = false;
 
   @Input() imgPath = ''; //TODO: aggiungere no card image
   //TODO: aggiungere config carta

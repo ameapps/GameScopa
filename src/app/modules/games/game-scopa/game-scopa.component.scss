@@ -32,6 +32,7 @@
     flex-wrap: wrap;
     column-gap: 1em;
     padding: 4em;
+    padding-bottom: 0;
     overflow-x: hidden;
     overflow-y: scroll; /* Abilita lo scroll verticale */
 
@@ -71,29 +72,4 @@
     column-gap: 1em;
     padding: 4em;
   }
-}
-
-.player-cards app-scopa-card {
-  position: relative;
-  cursor: pointer; /* Cambia il cursore per indicare che l'elemento è interattivo */
-}
-
-.player-cards app-scopa-card:hover {
-  border: 4px solid #0000ff; /* Disegna un bordo azzurro */
-  border-radius: 8px; /* Aggiunge angoli arrotondati */
-}
-
-.player-cards app-scopa-card:hover::before {
-  content: "Drag & drop on table"; /* Testo da mostrare */
-  position: absolute;
-  top: -1.5em; /* Posiziona il testo sopra la carta */
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(255, 255, 255, 0.8); /* Sfondo semi-trasparente */
-  color: black;
-  padding: 0.3em 0.5em;
-  border-radius: 5px;
-  font-size: 0.9em;
-  white-space: nowrap;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
 }
