@@ -1,4 +1,5 @@
 <div class="content">
+  <!-- Carte dell'avversario (coperte) -->
   <div class="challanger-cards">
     <img src="assets\cards\covered.png" alt="no-icon" srcset="" />
     <img src="assets\cards\covered.png" alt="no-icon" srcset="" />
@@ -11,6 +12,15 @@
       [canHover]="false"
       imgPath="{{ card.path }}"
     ></app-scopa-card>
+    <!-- Bottone per rimescolare le carte -->
+    <div class="shuffle-cards">
+      <img
+        (click)="shuffleCards()"
+        class="shuffle-cards-btn"
+        src="assets/GUI/home/cards-shuffle.svg"
+        alt="no-shuffle-button"
+      />
+    </div>
   </div>
   <!-- Carte del giocatore corrente -->
   <div class="player-cards">

@@ -60,6 +60,11 @@
     &::-webkit-scrollbar-button {
       display: none; /* Nasconde i pulsanti della scrollbar */
     }
+
+    .shuffle-cards-btn {
+      width: 25px;
+      z-index: 2;
+    }
   }
 
   .player-cards {
