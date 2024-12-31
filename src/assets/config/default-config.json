@@ -79,6 +79,9 @@
       }
     }
   ],
+  "game_settings" : {
+    "can_show_drag_and_drop_tooltip": false
+  }, 
   "friends": {},
   "store": {},
   "streetFoods": {},

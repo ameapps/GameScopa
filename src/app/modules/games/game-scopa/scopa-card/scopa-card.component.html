@@ -4,5 +4,5 @@
     [src]="imgPath"
     alt="no-card-icon"
   />
-  <div class="text-overlay">Drag&drop</div>
+  <div *ngIf="can_show_drag_and_drop_tooltip" class="text-overlay">Drag&drop</div>
 </div>

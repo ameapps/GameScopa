@@ -8,6 +8,11 @@ export class DefaultConfig {
   streetFoods!: DefaultConfigStreetFoods;
   shared!: DefaultConfigStreetShared;
   mock!: DefaultConfigStreetMock;
+  game_settings!: DefaultConfigGameSettings;
+}
+
+export class DefaultConfigGameSettings {
+  can_show_drag_and_drop_tooltip = false;
 }
 
 export class DefaultConfigStreetMock {
