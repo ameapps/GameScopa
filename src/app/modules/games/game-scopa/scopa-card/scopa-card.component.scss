@@ -8,12 +8,12 @@
   
   .container img {
     width: 100%; /* Adatta l'immagine al contenitore */
-    cursor: pointer; /* Indica interattività */
   }
   
   .img-hover:hover {
     border: 4px solid #0000ff; /* Disegna un bordo azzurro */
     border-radius: 8px; /* Aggiunge angoli arrotondati */
+    cursor: pointer !important; /* Indica interattività */
   }
   
   .text-overlay {
