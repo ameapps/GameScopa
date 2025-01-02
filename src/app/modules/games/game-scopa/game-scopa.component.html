@@ -15,7 +15,11 @@
     />
   </div>
   <!-- Carte sul tavolo -->
-  <div class="table-cards">
+  <div
+    class="table-cards"
+    (drop)="onDrop($event)"
+    (dragover)="allowDrop($event)"
+  >
     <app-scopa-card
       *ngFor="let card of this.game_service.tableCards"
       [canHover]="false"
@@ -25,9 +29,11 @@
   <!-- Carte del giocatore corrente -->
   <div class="player-cards">
     <app-scopa-card
-      *ngFor="let card of this.game_service.playerCards"
+      *ngFor="let card of this.game_service.playerCards; let i = index"
       [canHover]="true"
       imgPath="{{ card.path }}"
+      draggable="true"
+      (dragstart)="onDragStart($event, i)"
     ></app-scopa-card>
   </div>
 </div>
