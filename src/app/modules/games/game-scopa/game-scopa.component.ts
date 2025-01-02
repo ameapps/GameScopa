@@ -195,9 +195,11 @@ export class GameScopaComponent implements OnInit {
    * il cui indice è passato come parametro  */
   private addCardOnTable(cardIndex: number): void {
     try {
-      const card = this.game_service.playerCards.splice(cardIndex, 1)[0];
-      // Aggiungiamo la carta all'array delle carte sul tavolo
-      this.game_service.tableCards.push(card);
+      const card = this.getCardByIndex(cardIndex);
+      //1. Aggiungo la carta al tavolo 
+      this.game_service.addCardOnTable(card);
+      //2. Rimuovo la carta dal mazzo 
+      this.game_service.removePlayerCard(card);
     } catch (error) {
       console.error('Could not add the card on the table');
     }

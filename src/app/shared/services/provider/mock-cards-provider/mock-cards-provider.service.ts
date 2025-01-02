@@ -11,7 +11,7 @@ import { DefaultConfigHomeGames } from 'src/app/shared/models/defaultConfig';
  */
 export class MockCardsProviderService {
   //#region  variables
-  cards: Card[] = [];
+  allCards: Card[] = [];
   tableCards: Card[] = [];
   player_a_cards: Card[] = [];
   player_b_cards: Card[] = [];
@@ -27,12 +27,12 @@ export class MockCardsProviderService {
    */
   public startGame(currentActiveGame: DefaultConfigHomeGames): Card[] {
     try {
-      const allCards: Card[] = this.createAllCards(currentActiveGame);
+      this.allCards = this.createAllCards(currentActiveGame);
       //TODO: shaffle the cards : gli elementi dell'array devono essere rimescolati a caso
-      const shaffled = shuffleArray(allCards) ?? allCards;
+      const shaffled = shuffleArray(this.allCards) ?? this.allCards;
       return shaffled;
-    } catch (error) {
       console.error('Error initialing the game creating the new cards');
+    } catch (error) {
       return [];
     }
   }
@@ -91,7 +91,7 @@ export class MockCardsProviderService {
       console.log('all cards', currentActiveGame);
       //1. Estraggo 4 carte dal mazzo
       let allCards = this.getAllGameCards(currentActiveGame);
-      let tableCards = this.cards.slice(-4);
+      let tableCards = (this.tableCards = this.allCards.slice(-4));
       //2. Riduco il mazzp di 4 carte
       allCards.splice(-4);
 
@@ -105,8 +105,8 @@ export class MockCardsProviderService {
   }
 
   private getAllGameCards(currentActiveGame: DefaultConfigHomeGames) {
-    return this.cards.length === 40
-      ? this.cards
+    return this.allCards.length === 40
+      ? this.allCards
       : this.createAllCards(currentActiveGame);
   }
 
@@ -117,14 +117,48 @@ export class MockCardsProviderService {
     try {
       //1. Estraggo 4 carte dal mazzo
       let allCards = this.getAllGameCards(currentActiveGame);
-      let playerCards = this.cards.slice(-3);
-      //2. Riduco il mazzp di 4 carte
+      let playerCards = this.allCards.slice(-3);
+      //2. Riduco il mazzo di 4 carte
       allCards.splice(-3);
       console.log('player cards', playerCards);
+      //3. TODO: salvare le carte in player_a o player_b a seconda del player che sta chiedendo le carte
+      this.player_a_cards = playerCards;
 
       return playerCards;
     } catch (error) {
       console.error('Could not get the player cards', error);
+      return [];
+    }
+  }
+
+  /**Metodo per aggiungere la carta specificata al tavolo */
+  public addCardOnTable(card: Card | undefined): Card[] {
+    try {
+      if (card == null) {
+        console.error('Cannot add null card on the table');
+        return [];
+      }
+      this.tableCards.push(card);
+      return this.tableCards;
+    } catch (error) {
+      console.error('MockBE: could not add card on the table');
+      return [];
+    }
+  }
+
+  /**Metodo per rimuovere una carta dal mazzo del giocatore */
+  public removePlayerCard(card: Card | undefined): Card[] {
+    try {
+      if (card == null) {
+        console.error('Cannot add null card on the table');
+        return [];
+      }
+      this.player_a_cards = this.player_a_cards.filter(
+        (row) => row !== card
+      );
+      return this.player_a_cards;
+    } catch (error) {
+      console.error('MockBE: could not add card on the table');
       return [];
     }
   }

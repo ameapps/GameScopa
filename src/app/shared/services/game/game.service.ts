@@ -62,7 +62,7 @@ export class GameService implements OnDestroy {
       let cards: Card[] = [];
       console.log('currentActiveGame', currentActiveGame);
       if (this.common.canUseMockData)
-        this.mock_cards_provider.cards =
+        this.mock_cards_provider.allCards =
           this.mock_cards_provider.startGame(currentActiveGame);
       //TODO: sviluppare la parte filebase
       return [];
@@ -97,6 +97,16 @@ export class GameService implements OnDestroy {
       );
       return [];
     }
+  }
+
+  /**Metodo che richiede al BE di aggiungere una carta al tavolo  */
+  public addCardOnTable(card: Card | undefined) {
+    this.tableCards = this.mock_cards_provider.addCardOnTable(card);
+  }
+
+  /**Metodo che richiede al BE di rimuovere una carta dal tavolo */
+  public removePlayerCard(card: Card | undefined) {
+    this.playerCards = this.mock_cards_provider.removePlayerCard(card);
   }
 
   /**Metodo per aggiornare sul BE le carte che l'utente ha recuperato dal tavolo in totale */
