@@ -11,8 +11,7 @@ import { GameService } from 'src/app/shared/services/game/game.service';
   styleUrls: ['./game-scopa.component.scss'],
 })
 export class GameScopaComponent implements OnInit {
-
-  draggingCard?: Card; 
+  draggingCard?: Card;
 
   constructor(
     public game_service: GameService,
@@ -55,7 +54,7 @@ export class GameScopaComponent implements OnInit {
 
   onDrop(event: DragEvent): void {
     //1. Recuperiamo l'indice testuale della carta trascinata
-    console.log('dropping')
+    console.log('dropping');
     event.preventDefault();
     //2. Prevengo il drop di una carta del tavolo nel tavolo stesso
     if (this.draggingCard == null) return;
@@ -87,7 +86,7 @@ export class GameScopaComponent implements OnInit {
         playerCard,
         obtainableCards
       );
-      console.log('carte ritirate', playerObtainedCards)
+      console.log('carte ritirate', playerObtainedCards);
       if (playerObtainedCards == null) {
         console.error('could not get cards from the table');
         return;
@@ -113,19 +112,26 @@ export class GameScopaComponent implements OnInit {
     obtainableCards: PlayerObtainableCards
   ): Card[] | undefined {
     try {
-      if (obtainableCards.sameValueCards.length === 1) return obtainableCards.sameValueCards; 
-      if (obtainableCards.combinations.length === 1) {
-        const matchingCombination = obtainableCards.combinations.filter(row => row.sum === playerCard?.value);
+      if (obtainableCards.sameValueCards.length === 1)
+        return obtainableCards.sameValueCards;
+      if (obtainableCards.combinations.length > 1) {
+        const matchingCombination = obtainableCards.combinations.filter(
+          (row) => row.sum === playerCard?.value
+        );
         if (matchingCombination.length === 0) {
-          console.error('No obtainable matching cards found when checking for the current card');
+          console.error(
+            'No obtainable matching cards found when checking for the current card'
+          );
           return;
         }
-        //TODO: dare all'utente la possibilità di scegliere il paio di carte che vuole 
+        //TODO: dare all'utente la possibilità di scegliere il paio di carte che vuole
         return matchingCombination[0].addends;
       }
       return undefined;
     } catch (error) {
-      console.error('Could not define which cards the user can obtain from the table');
+      console.error(
+        'Could not define which cards the user can obtain from the table'
+      );
       return undefined;
     }
   }
@@ -196,9 +202,9 @@ export class GameScopaComponent implements OnInit {
   private addCardOnTable(cardIndex: number): void {
     try {
       const card = this.getCardByIndex(cardIndex);
-      //1. Aggiungo la carta al tavolo 
+      //1. Aggiungo la carta al tavolo
       this.game_service.addCardOnTable(card);
-      //2. Rimuovo la carta dal mazzo 
+      //2. Rimuovo la carta dal mazzo
       this.game_service.removePlayerCard(card);
     } catch (error) {
       console.error('Could not add the card on the table');
