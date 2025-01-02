@@ -23,6 +23,16 @@
     }
   }
 
+  .shuffle-cards {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .shuffle-cards-btn {
+      width: 25px;
+      z-index: 2;
+    }
+  }
+
   .table-cards {
     width: 100%;
     height: 100%;
@@ -59,11 +69,6 @@
 
     &::-webkit-scrollbar-button {
       display: none; /* Nasconde i pulsanti della scrollbar */
-    }
-
-    .shuffle-cards-btn {
-      width: 25px;
-      z-index: 2;
     }
   }
 

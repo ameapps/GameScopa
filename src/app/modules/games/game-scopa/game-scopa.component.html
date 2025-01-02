@@ -5,6 +5,15 @@
     <img src="assets\cards\covered.png" alt="no-icon" srcset="" />
     <img src="assets\cards\covered.png" alt="no-icon" srcset="" />
   </div>
+  <!-- Bottone per rimescolare le carte -->
+  <div class="shuffle-cards">
+    <img
+      (click)="shuffleCards()"
+      class="shuffle-cards-btn"
+      src="assets/GUI/home/cards-shuffle.svg"
+      alt="no-shuffle-button"
+    />
+  </div>
   <!-- Carte sul tavolo -->
   <div class="table-cards">
     <app-scopa-card
@@ -12,15 +21,6 @@
       [canHover]="false"
       imgPath="{{ card.path }}"
     ></app-scopa-card>
-    <!-- Bottone per rimescolare le carte -->
-    <div class="shuffle-cards">
-      <img
-        (click)="shuffleCards()"
-        class="shuffle-cards-btn"
-        src="assets/GUI/home/cards-shuffle.svg"
-        alt="no-shuffle-button"
-      />
-    </div>
   </div>
   <!-- Carte del giocatore corrente -->
   <div class="player-cards">
