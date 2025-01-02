@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from 'src/app/shared/models/card';
+import { CardsCombinationService } from 'src/app/shared/services/combinations/cards-combination.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { GameService } from 'src/app/shared/services/game/game.service';
 
@@ -9,7 +10,11 @@ import { GameService } from 'src/app/shared/services/game/game.service';
   styleUrls: ['./game-scopa.component.scss'],
 })
 export class GameScopaComponent implements OnInit {
-  constructor(public game_service: GameService, public common: CommonService) {}
+  constructor(
+    public game_service: GameService,
+    private cards_comb: CardsCombinationService,
+    public common: CommonService
+  ) {}
 
   ngOnInit() {
     //1. Inizializzo le carte del gioco secondo le impostazioni definite
@@ -66,9 +71,12 @@ export class GameScopaComponent implements OnInit {
       );
       console.log('same cards values', sameValueCardFound);
       if (sameValueCardFound.length > 0) return true;
-      //2. Cerco esiste una combinazione di carte la cui somma dia il valore della carta dell'utente 
-      
-
+      //2. Cerco esiste una combinazione di carte la cui somma dia il valore della carta dell'utente
+      const combinations = this.cards_comb.getCombinations(
+        this.game_service.tableCards,
+        playerCard?.value ?? -1
+      );
+      console.log('cards combinations', combinations);
       return false;
     } catch (error) {
       console.error(
