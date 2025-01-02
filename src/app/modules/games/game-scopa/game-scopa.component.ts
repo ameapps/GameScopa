@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from 'src/app/shared/models/card';
+import { PlayerObtainableCards } from 'src/app/shared/models/playerObtainableCards';
 import { CardsCombinationService } from 'src/app/shared/services/combinations/cards-combination.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { GameService } from 'src/app/shared/services/game/game.service';
@@ -49,14 +50,74 @@ export class GameScopaComponent implements OnInit {
   }
 
   onDrop(event: DragEvent): void {
-    // Recuperiamo l'indice testuale della carta trascinata
+    //1. Recuperiamo l'indice testuale della carta trascinata
     event.preventDefault();
     const sPlayerCardIndex = event.dataTransfer?.getData('text/plain');
     if (sPlayerCardIndex !== null) {
-      // Convertiamo l'indice in numero
+      //2. Convertiamo l'indice in numero
       const playerCardIndex = parseInt(sPlayerCardIndex ?? '-1', 10);
-      if (this.canGetTableCards(playerCardIndex))
-        this.addCardOnTable(playerCardIndex);
+      if (this.canGetTableCards(playerCardIndex)) {
+        this.getPlayerCardsFromTable(playerCardIndex);
+      } else this.addCardOnTable(playerCardIndex);
+    }
+  }
+
+  /**Metodo che recupera le carte dal tavolo */
+  getPlayerCardsFromTable(playerCardIndex: number): void {
+    try {
+      //1. Recupero la carta dal suo indice
+      const playerCard = this.getCardByIndex(playerCardIndex);
+      //2. Recupero le carte che l'utente può prendere dal tavolo
+      const obtainableCards = this.getPlayerObtainableCards(playerCard);
+      if (obtainableCards == null) {
+        console.warn('The user can get no cards from the table');
+        return;
+      }
+      //3. Recupero le carte dal tavolo rispettando le regole di ritiro (ES: match card più importante della somma)
+      const playerObtainedCards = this.getPlayerObtainedCards(
+        playerCard,
+        obtainableCards
+      );
+      console.log('carte ritirate', playerObtainedCards)
+      if (playerObtainedCards == null) {
+        console.error('could not get cards from the table');
+        return;
+      }
+      //4. Chiedo al BE di rimuovere dal tavolo le carte prese dall'utente
+      this.game_service.updateTableCards(playerObtainedCards);
+      //5. Chiedo al BE di aggiornare le carte dell'utente con quelle appena recuperate
+      this.game_service.updateUserCards(playerObtainedCards);
+    } catch (error) {
+      console.error(
+        'Could not get the cards from the table matching with the specified card value'
+      );
+      return undefined;
+    }
+  }
+
+  /**Metodo che permette all'utente di ritirare carte dal tavolo garantendo che siano
+   * rispettate le regole di ritiro.
+   * ES: il match di valore ha più importanza della somma
+   */
+  getPlayerObtainedCards(
+    playerCard: Card | undefined,
+    obtainableCards: PlayerObtainableCards
+  ): Card[] | undefined {
+    try {
+      if (obtainableCards.sameValueCards.length === 1) return obtainableCards.sameValueCards; 
+      if (obtainableCards.combinations.length === 1) {
+        const matchingCombination = obtainableCards.combinations.filter(row => row.sum === playerCard?.value);
+        if (matchingCombination.length === 0) {
+          console.error('No obtainable matching cards found when checking for the current card');
+          return;
+        }
+        //TODO: dare all'utente la possibilità di scegliere il paio di carte che vuole 
+        return matchingCombination[0].addends;
+      }
+      return undefined;
+    } catch (error) {
+      console.error('Could not define which cards the user can obtain from the table');
+      return undefined;
     }
   }
 
@@ -65,24 +126,42 @@ export class GameScopaComponent implements OnInit {
   canGetTableCards(playerCardIndex: number): boolean {
     try {
       const playerCard = this.getCardByIndex(playerCardIndex);
-      //1. Cerco se nel tavolo ci sono carte aventi lo stesso valore di quella buttata dal giocatore
-      const sameValueCardFound = this.game_service.tableCards.filter(
-        (row) => row.value === playerCard?.value
-      );
-      console.log('same cards values', sameValueCardFound);
-      if (sameValueCardFound.length > 0) return true;
-      //2. Cerco esiste una combinazione di carte la cui somma dia il valore della carta dell'utente
-      const combinations = this.cards_comb.getCombinations(
-        this.game_service.tableCards,
-        playerCard?.value ?? -1
-      );
-      console.log('cards combinations', combinations);
+      const obtainableCards = this.getPlayerObtainableCards(playerCard);
+      if (obtainableCards == null) return false;
+      if (obtainableCards.sameValueCards.length > 0) return true;
+      if (obtainableCards.combinations.length > 0) return true;
       return false;
     } catch (error) {
       console.error(
         'Could not decide if it is possible or not to get card from the table'
       );
       return false;
+    }
+  }
+
+  getPlayerObtainableCards(
+    playerCard: Card | undefined
+  ): PlayerObtainableCards | undefined {
+    try {
+      //1. Cerco se nel tavolo ci sono carte aventi lo stesso valore di quella buttata dal giocatore
+      const sameValueCardsFound = this.game_service.tableCards.filter(
+        (row) => row.value === playerCard?.value
+      );
+      //2. Cerco esiste una combinazione di carte la cui somma dia il valore della carta dell'utente
+      const combinations = this.cards_comb.getCombinations(
+        this.game_service.tableCards,
+        playerCard?.value ?? -1
+      );
+      return {
+        sameValueCards: sameValueCardsFound,
+        combinations: combinations,
+        targetValue: playerCard?.value ?? -1,
+      };
+    } catch (error) {
+      console.error(
+        'Could not get the cards that the player can obtain from the table'
+      );
+      return undefined;
     }
   }
 

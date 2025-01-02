@@ -98,4 +98,18 @@ export class GameService implements OnDestroy {
       return [];
     }
   }
+
+  /**Metodo per aggiornare sul BE le carte che l'utente ha recuperato dal tavolo in totale */
+  public updateUserCards(playerObtainedCards: Card[]) {
+    try {
+      throw new Error('Method not implemented.');
+    } catch (error) {}
+  }
+
+  /**Metodo per aggiornare il BE relativamente alle carte attualmente  */
+  public updateTableCards(playerObtainedCards: Card[]) {
+    try {
+      throw new Error('Method not implemented.');
+    } catch (error) {}
+  }
 }
