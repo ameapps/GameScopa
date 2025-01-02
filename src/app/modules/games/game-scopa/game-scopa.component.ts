@@ -11,6 +11,9 @@ import { GameService } from 'src/app/shared/services/game/game.service';
   styleUrls: ['./game-scopa.component.scss'],
 })
 export class GameScopaComponent implements OnInit {
+
+  draggingCard?: Card; 
+
   constructor(
     public game_service: GameService,
     private cards_comb: CardsCombinationService,
@@ -42,6 +45,7 @@ export class GameScopaComponent implements OnInit {
   onDragStart(event: DragEvent, cardIndex: number): void {
     // Salviamo l'indice della carta trascinata nei dati del drag event
     event.dataTransfer?.setData('text/plain', cardIndex.toString());
+    this.draggingCard = this.getCardByIndex(cardIndex);
   }
 
   allowDrop(event: DragEvent): void {
@@ -51,15 +55,20 @@ export class GameScopaComponent implements OnInit {
 
   onDrop(event: DragEvent): void {
     //1. Recuperiamo l'indice testuale della carta trascinata
+    console.log('dropping')
     event.preventDefault();
+    //2. Prevengo il drop di una carta del tavolo nel tavolo stesso
+    if (this.draggingCard == null) return;
     const sPlayerCardIndex = event.dataTransfer?.getData('text/plain');
     if (sPlayerCardIndex !== null) {
-      //2. Convertiamo l'indice in numero
+      //3. Convertiamo l'indice in numero
       const playerCardIndex = parseInt(sPlayerCardIndex ?? '-1', 10);
       if (this.canGetTableCards(playerCardIndex)) {
         this.getPlayerCardsFromTable(playerCardIndex);
       } else this.addCardOnTable(playerCardIndex);
     }
+    //4. Il drop è terminato, non serve più mantenere questa carta
+    if (this.draggingCard != null) this.draggingCard = undefined;
   }
 
   /**Metodo che recupera le carte dal tavolo */
