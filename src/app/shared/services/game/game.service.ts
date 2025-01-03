@@ -35,13 +35,13 @@ export class GameService implements OnDestroy {
       console.log('currentActiveGame', currentActiveGame);
       if (this.common.canUseMockData) {
         //1. Assegnamento carte mock al giocatore 1
-        cards = this.mock_cards_provider.player_a_cards =
+        cards = this.mock_cards_provider.player_a_hand_cards =
           this.mock_cards_provider.getPlayerCards(currentActiveGame, {
             tableCards: this.tableCards,
             playerCards: this.playerCards,
           });
         //2. Assegnamento carte mock al giocatore 2
-        this.mock_cards_provider.player_b_cards =
+        this.mock_cards_provider.player_b_hand_cards =
           this.mock_cards_provider.getPlayerCards(currentActiveGame, {
             tableCards: this.tableCards,
             playerCards: this.playerCards,
@@ -126,9 +126,9 @@ export class GameService implements OnDestroy {
   }
 
   /**Metodo per aggiornare sul BE le carte che l'utente ha recuperato dal tavolo in totale */
-  public updateUserCards(playerObtainedCards: Card[]): void {
+  public updateUserWonCards(playerWonCards: Card[]): void {
     try {
-      this.mock_cards_provider.updatePlayerCards(playerObtainedCards);
+      this.mock_cards_provider.updatePlayerWonCards(playerWonCards);
     } catch (error) {
       console.error('Could not update the user cards');
     }

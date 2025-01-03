@@ -120,8 +120,9 @@ export class GameScopaComponent implements OnInit {
         console.error('Attenzione: carta presa non può essere null');
         return;
       }
-      const allObtainedCards = [...playerObtainedCards, playerCard];
-      this.game_service.updateUserCards(allObtainedCards);
+      const playerWonCards = [...playerObtainedCards, playerCard];
+      console.log('carte vinte dal giocatore', playerWonCards);
+      this.game_service.updateUserWonCards(playerWonCards);
     } catch (error) {
       console.error(
         'Could not get the cards from the table matching with the specified card value'

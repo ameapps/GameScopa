@@ -13,8 +13,10 @@ export class MockCardsProviderService {
   //#region  variables
   allCards: Card[] = [];
   tableCards: Card[] = [];
-  player_a_cards: Card[] = [];
-  player_b_cards: Card[] = [];
+  player_a_hand_cards: Card[] = [];
+  player_b_hand_cards: Card[] = [];
+  player_a_won_cards: Card[] = [];
+  player_b_won_cards: Card[] = [];
   SCOPA_CARDS_NUMBER = 40;
   // #endregion
 
@@ -122,7 +124,7 @@ export class MockCardsProviderService {
       allCards.splice(-3);
       console.log('player cards', playerCards);
       //3. TODO: salvare le carte in player_a o player_b a seconda del player che sta chiedendo le carte
-      this.player_a_cards = playerCards;
+      this.player_a_hand_cards = playerCards;
 
       return playerCards;
     } catch (error) {
@@ -154,9 +156,9 @@ export class MockCardsProviderService {
         return [];
       }
       cards.forEach((card) => {
-        this.player_a_cards = this.player_a_cards.filter((row) => row !== card);
+        this.player_a_hand_cards = this.player_a_hand_cards.filter((row) => row !== card);
       });
-      return this.player_a_cards;
+      return this.player_a_hand_cards;
     } catch (error) {
       console.error('MockBE: could not add card on the table');
       return [];
@@ -236,7 +238,7 @@ export class MockCardsProviderService {
       ];
       //2. Imposto le carte nel BE
       this.tableCards = tableCards;
-      this.player_a_cards = playerCards;
+      this.player_a_hand_cards = playerCards;
       //3. Costruisco il risultato
       const result = {
         tableCards,
@@ -251,11 +253,11 @@ export class MockCardsProviderService {
 
   /**Metodo per aggiornare le carte del giocatore
    * che ha appena eseguito una mossa */
-  public updatePlayerCards(playerObtainedCards: Card[]): void {
+  public updatePlayerWonCards(playerWonCards: Card[]): void {
     try {
-      ///TODO: salvare le carte tra quelle vinte
-      // this.player_a_cards = [...this.player_a_cards, ...playerObtainedCards];
-      // console.log('carte utente', this.player_a_cards);
+      //Salvo le carte tra quelle vinte dal giocatore
+      this.player_a_won_cards = [...this.player_a_won_cards, ...playerWonCards];
+      console.log('BE: player won cards', this.player_a_won_cards);
     } catch (error) {
       console.error('Could not uplate the user cards after their move');
     }
