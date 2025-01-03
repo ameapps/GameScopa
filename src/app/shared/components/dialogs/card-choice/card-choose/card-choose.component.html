@@ -1,1 +1,8 @@
-<div class="container"></div>
+<div class="container">
+  <div
+    class="combination"
+    *ngFor="let combination of this.obtainableCards?.combinations"
+  >
+    <div class="card" *ngFor="let card of combination.addends"></div>
+  </div>
+</div>

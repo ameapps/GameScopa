@@ -1,5 +1,28 @@
 .container {
+    position: relative;
     width: 50vw;
     height: 50vh;
     background-color: #00ffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+
+    .combination {
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        column-gap: 0.5em;
+        .card {
+            position: relative;
+            width: 25px;
+            height: 25px;
+            background-color: black;
+        }
+    }
+
 }

@@ -16,6 +16,8 @@ export class CardChooseComponent  implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('combinazioni possibli', this.obtainableCards?.combinations)
+  }
 
 }
