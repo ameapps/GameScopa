@@ -132,13 +132,13 @@ export class MockCardsProviderService {
   }
 
   /**Metodo per aggiungere la carta specificata al tavolo */
-  public addCardOnTable(card: Card | undefined): Card[] {
+  public addCardOnTable(cards: Card[] | undefined): Card[] {
     try {
-      if (card == null) {
+      if (cards == null) {
         console.error('Cannot add null card on the table');
         return [];
       }
-      this.tableCards.push(card);
+      this.tableCards = [...this.tableCards, ...cards];
       return this.tableCards;
     } catch (error) {
       console.error('MockBE: could not add card on the table');
@@ -147,18 +147,32 @@ export class MockCardsProviderService {
   }
 
   /**Metodo per rimuovere una carta dal mazzo del giocatore */
-  public removePlayerCard(card: Card | undefined): Card[] {
+  public removePlayerCard(cards: Card[] | undefined): Card[] {
     try {
-      if (card == null) {
+      if (cards == null) {
         console.error('Cannot add null card on the table');
         return [];
       }
-      this.player_a_cards = this.player_a_cards.filter(
-        (row) => row !== card
-      );
+      cards.forEach((card) => {
+        this.player_a_cards = this.player_a_cards.filter((row) => row !== card);
+      });
       return this.player_a_cards;
     } catch (error) {
       console.error('MockBE: could not add card on the table');
+      return [];
+    }
+  }
+
+  /**Metodo per rimuovere le carte specificate dal tavolo */
+  public removeCardsFromTable(cardsToRemove: Card[]): Card[] {
+    try {
+      cardsToRemove.forEach(card => {
+        this.tableCards = this.tableCards.filter(row => row !== card); 
+      });
+
+      return this.tableCards;
+    } catch (error) {
+      console.error('Could not remove the specifie cards from the table');
       return [];
     }
   }

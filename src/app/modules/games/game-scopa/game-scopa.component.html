@@ -31,6 +31,7 @@
     <app-scopa-card
       *ngFor="let card of this.game_service.playerCards; let i = index"
       [canHover]="true"
+      [ngStyle]="canRotateCards ? getCardStyle(i) : {}"
       imgPath="{{ card.path }}"
       draggable="true"
       (dragstart)="onDragStart($event, i)"

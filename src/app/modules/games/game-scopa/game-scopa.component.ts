@@ -12,6 +12,7 @@ import { GameService } from 'src/app/shared/services/game/game.service';
 })
 export class GameScopaComponent implements OnInit {
   draggingCard?: Card;
+  canRotateCards = false;
 
   constructor(
     public game_service: GameService,
@@ -92,8 +93,11 @@ export class GameScopaComponent implements OnInit {
         return;
       }
       //4. Chiedo al BE di rimuovere dal tavolo le carte prese dall'utente
-      this.game_service.updateTableCards(playerObtainedCards);
+      this.game_service.removeCardsFromTable(playerObtainedCards);
+      //5. Rimuovo la carta dell'utente usata per prendere dal tavolo
+      this.game_service.removePlayerCard(playerCard);
       //5. Chiedo al BE di aggiornare le carte dell'utente con quelle appena recuperate
+      //TODO
       this.game_service.updateUserCards(playerObtainedCards);
     } catch (error) {
       console.error(
@@ -114,7 +118,7 @@ export class GameScopaComponent implements OnInit {
     try {
       if (obtainableCards.sameValueCards.length === 1)
         return obtainableCards.sameValueCards;
-      if (obtainableCards.combinations.length > 1) {
+      if (obtainableCards.combinations.length > 0) {
         const matchingCombination = obtainableCards.combinations.filter(
           (row) => row.sum === playerCard?.value
         );
@@ -152,6 +156,17 @@ export class GameScopaComponent implements OnInit {
       );
       return false;
     }
+  }
+
+  getCardStyle(index: number): { transform: string } {
+    const totalCards = this.game_service.playerCards.length;
+    const angleStep = 3; // Angolo totale da distribuire
+    const startAngle = -(angleStep / 2) * (totalCards - 1); // Angolo iniziale
+    const rotateAngle = startAngle + index * angleStep;
+
+    return {
+      transform: `rotate(${rotateAngle}deg)`
+    };
   }
 
   getPlayerObtainableCards(
@@ -203,7 +218,7 @@ export class GameScopaComponent implements OnInit {
     try {
       const card = this.getCardByIndex(cardIndex);
       //1. Aggiungo la carta al tavolo
-      this.game_service.addCardOnTable(card);
+      this.game_service.addCardsOnTable(card);
       //2. Rimuovo la carta dal mazzo
       this.game_service.removePlayerCard(card);
     } catch (error) {

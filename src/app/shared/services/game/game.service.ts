@@ -100,13 +100,29 @@ export class GameService implements OnDestroy {
   }
 
   /**Metodo che richiede al BE di aggiungere una carta al tavolo  */
-  public addCardOnTable(card: Card | undefined) {
-    this.tableCards = this.mock_cards_provider.addCardOnTable(card);
+  public addCardsOnTable(cards: Card | undefined) {
+    if (cards == null) {
+      console.error('Cannot add null card on table');
+      return;
+    }
+    this.tableCards = this.mock_cards_provider.addCardOnTable([cards]);
   }
 
   /**Metodo che richiede al BE di rimuovere una carta dal tavolo */
   public removePlayerCard(card: Card | undefined) {
-    this.playerCards = this.mock_cards_provider.removePlayerCard(card);
+    if (card == null) {
+      console.error('Cannot add null card on table');
+      return;
+    }
+    this.playerCards = this.mock_cards_provider.removePlayerCard([card]);
+  }
+
+  public removeCardsFromTable(cards: Card[]) {
+    if (cards == null) {
+      console.error('Cannot remove null cards from table');
+      return;
+    }
+    this.tableCards = this.mock_cards_provider.removeCardsFromTable(cards);
   }
 
   /**Metodo per aggiornare sul BE le carte che l'utente ha recuperato dal tavolo in totale */
