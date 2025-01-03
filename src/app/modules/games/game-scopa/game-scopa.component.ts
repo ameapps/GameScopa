@@ -146,17 +146,8 @@ export class GameScopaComponent implements OnInit {
           );
           return;
         }
-
         if (matchingCombination.length === 1)
           return matchingCombination[0].addends;
-
-        //TODO: dare all'utente la possibilità di scegliere il paio di carte che vuole.
-        //TODO: Deve essere fatto usando la dialog creata col componente app-card-choose.
-        //TODO: Occorre quindi:
-        //TODO: - aprire il componente, impostando canShowDialog=true
-        //TODO: - aspettare che all'interno del componente sia effettuata una scelta con una promise
-        //TODO: - quando l'utente effettua la scelta, la promise si risolve e questo metodo prosegue la sua esecuzione
-
         // Apri il dialog per consentire la selezione delle carte
         this.canShowDialog = true;
         // Utilizza async/await per attendere la selezione delle carte
