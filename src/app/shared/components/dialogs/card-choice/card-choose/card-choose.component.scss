@@ -1,26 +1,26 @@
 .container {
     position: relative;
-    width: 50vw;
+    width: 75vw;
     height: 50vh;
-    background-color: #00ffff;
+    background-color: rgba(0,0,255,1);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 1em;
 
 
     .combination {
-        width: 100%;
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: row;
-        column-gap: 0.5em;
-        .card {
+        column-gap: 0.25em;
+        app-scopa-card {
             position: relative;
-            width: 25px;
-            height: 25px;
+            transform: scale(100%);
             background-color: black;
         }
     }

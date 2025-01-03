@@ -3,6 +3,11 @@
     class="combination"
     *ngFor="let combination of this.obtainableCards?.combinations"
   >
-    <div class="card" *ngFor="let card of combination.addends"></div>
+    <!-- <div class="card" *ngFor="let card of combination.addends"></div> -->
+    <app-scopa-card
+      *ngFor="let card of combination.addends"
+      [canHover]="false"
+      imgPath="{{ card.path }}"
+    ></app-scopa-card>
   </div>
 </div>
