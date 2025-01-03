@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { GameScopaModule } from './game-scopa/game-scopa.module';
+import { CardChooseComponent } from 'src/app/shared/components/dialogs/card-choice/card-choose/card-choose.component';
 
 
 @NgModule({

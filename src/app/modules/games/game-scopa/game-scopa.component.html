@@ -1,4 +1,6 @@
 <div class="content">
+  <!-- Componente per la scelta delle carte da ritirare -->
+  <app-card-choose *ngIf="canShowDialog" [obtainableCards]="obtainableCards"></app-card-choose>
   <!-- Carte dell'avversario (coperte) -->
   <div class="challanger-cards">
     <img src="assets\cards\covered.png" alt="no-icon" srcset="" />

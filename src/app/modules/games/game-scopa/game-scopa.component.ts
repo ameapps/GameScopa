@@ -12,7 +12,9 @@ import { GameService } from 'src/app/shared/services/game/game.service';
 })
 export class GameScopaComponent implements OnInit {
   draggingCard?: Card;
+  obtainableCards?: PlayerObtainableCards;
   canRotateCards = false;
+  canShowDialog = false;
 
   constructor(
     public game_service: GameService,
@@ -78,6 +80,7 @@ export class GameScopaComponent implements OnInit {
       const playerCard = this.getCardByIndex(playerCardIndex);
       //2. Recupero le carte che l'utente può prendere dal tavolo
       const obtainableCards = this.getPlayerObtainableCards(playerCard);
+      this.obtainableCards = obtainableCards;
       if (obtainableCards == null) {
         console.warn('The user can get no cards from the table');
         return;
@@ -129,6 +132,7 @@ export class GameScopaComponent implements OnInit {
           return;
         }
         //TODO: dare all'utente la possibilità di scegliere il paio di carte che vuole
+        
         return matchingCombination[0].addends;
       }
       return undefined;
@@ -158,6 +162,7 @@ export class GameScopaComponent implements OnInit {
     }
   }
 
+  /**Metodo che permette di ruotare le carte visualizzatre sul tavolo */
   getCardStyle(index: number): { transform: string } {
     const totalCards = this.game_service.playerCards.length;
     const angleStep = 3; // Angolo totale da distribuire
@@ -165,10 +170,11 @@ export class GameScopaComponent implements OnInit {
     const rotateAngle = startAngle + index * angleStep;
 
     return {
-      transform: `rotate(${rotateAngle}deg)`
+      transform: `rotate(${rotateAngle}deg)`,
     };
   }
 
+  /**Metodo che permette di calcolare tutte le carte che l'utente può ottenere dal tavolo */
   getPlayerObtainableCards(
     playerCard: Card | undefined
   ): PlayerObtainableCards | undefined {
