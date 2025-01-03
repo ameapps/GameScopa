@@ -177,6 +177,78 @@ export class MockCardsProviderService {
     }
   }
 
+  /**Metodo di test per ottenere carte fissate in modo da poter eseguire test sulle combinazioni */
+  public getGameCardsWithCombinations(): any {
+    try {
+      //1. Costruisco le carte fissate
+      const tableCards: Card[] = [
+        {
+          extension: 'png',
+          group: 'napoletane',
+          path: 'assets/cards/png/napoletane/coppe/3.png',
+          type: 'coppe',
+          value: 3,
+        },
+        {
+          extension: 'png',
+          group: 'napoletane',
+          path: 'assets/cards/png/napoletane/coppe/4.png',
+          type: 'coppe',
+          value: 4,
+        },
+        {
+          extension: 'png',
+          group: 'napoletane',
+          path: 'assets/cards/png/napoletane/denari/3.png',
+          type: 'denari',
+          value: 3,
+        },
+        {
+          extension: 'png',
+          group: 'napoletane',
+          path: 'assets/cards/png/napoletane/denari/4.png',
+          type: 'denari',
+          value: 4,
+        },
+      ];
+      const playerCards: Card[] = [
+        {
+          extension: 'png',
+          group: 'napoletane',
+          path: 'assets/cards/png/napoletane/coppe/7.png',
+          type: 'coppe',
+          value: 7,
+        },
+        {
+          extension: 'png',
+          group: 'napoletane',
+          path: 'assets/cards/png/napoletane/denari/7.png',
+          type: 'denari',
+          value: 7,
+        },
+        {
+          extension: 'png',
+          group: 'napoletane',
+          path: 'assets/cards/png/napoletane/spade/7.png',
+          type: 'spade',
+          value: 7,
+        },
+      ];
+      //2. Imposto le carte nel BE 
+      this.tableCards = tableCards;
+      this.player_a_cards = playerCards;
+      //3. Costruisco il risultato
+      const result = {
+        tableCards,
+        playerCards,
+      };
+
+      return result;
+    } catch (error) {
+      console.error('Could not get cards with combination for test purposes');
+    }
+  }
+
   // #endregion
 }
 

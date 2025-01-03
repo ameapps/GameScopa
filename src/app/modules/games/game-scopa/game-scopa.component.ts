@@ -4,6 +4,7 @@ import { PlayerObtainableCards } from 'src/app/shared/models/playerObtainableCar
 import { CardsCombinationService } from 'src/app/shared/services/combinations/cards-combination.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { GameService } from 'src/app/shared/services/game/game.service';
+import { TestsService } from 'src/app/shared/services/tests/tests.service';
 
 @Component({
   selector: 'app-game-scopa',
@@ -19,6 +20,7 @@ export class GameScopaComponent implements OnInit {
   constructor(
     public game_service: GameService,
     private cards_comb: CardsCombinationService,
+    private tests_service: TestsService,
     public common: CommonService
   ) {}
 
@@ -44,59 +46,11 @@ export class GameScopaComponent implements OnInit {
   /**Metodo per preparare le carte sul tavolo ed in mano al giocatore
    * in modo che sia possibile recuperare più combinazioni */
   getGameCardsWithCombinations() {
-    this.game_service.tableCards = [
-      {
-        extension: 'png',
-        group: 'napoletane',
-        path: 'assets/cards/png/napoletane/coppe/3.png',
-        type: 'coppe',
-        value: 3,
-      },
-      {
-        extension: 'png',
-        group: 'napoletane',
-        path: 'assets/cards/png/napoletane/coppe/4.png',
-        type: 'coppe',
-        value: 4,
-      },
-      {
-        extension: 'png',
-        group: 'napoletane',
-        path: 'assets/cards/png/napoletane/denari/3.png',
-        type: 'denari',
-        value: 3,
-      },
-      {
-        extension: 'png',
-        group: 'napoletane',
-        path: 'assets/cards/png/napoletane/denari/4.png',
-        type: 'denari',
-        value: 4,
-      }
-    ];
-    this.game_service.playerCards = [
-      {
-        extension: 'png',
-        group: 'napoletane',
-        path: 'assets/cards/png/napoletane/coppe/7.png',
-        type: 'coppe',
-        value: 7,
-      },
-      {
-        extension: 'png',
-        group: 'napoletane',
-        path: 'assets/cards/png/napoletane/spade/7.png',
-        type: 'denari',
-        value: 7,
-      },
-      {
-        extension: 'png',
-        group: 'napoletane',
-        path: 'assets/cards/png/napoletane/spade/7.png',
-        type: 'spade',
-        value: 7,
-      }
-    ];
+    //1. Richiedo le carte combinate dal BE e le imposto come in uso nel BE
+    const combinations = this.tests_service.getGameCardsWithCombinations();
+    //2. Imposto le carte ricevute nel FT
+    this.game_service.tableCards = combinations.tableCards;
+    this.game_service.playerCards = combinations.playerCards;
   }
 
   /**Metodo per mischiare le carte */
@@ -210,7 +164,7 @@ export class GameScopaComponent implements OnInit {
         // Disattiva il dialog
         this.canShowDialog = false;
 
-        return matchingCombination[0].addends;
+        return selectedCards;
       }
       return undefined;
     } catch (error) {

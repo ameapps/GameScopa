@@ -2,6 +2,7 @@
   <div
     class="combination"
     *ngFor="let combination of this.obtainableCards?.combinations"
+    (click)="onCombinationClick(combination)"
   >
     <!-- <div class="card" *ngFor="let card of combination.addends"></div> -->
     <app-scopa-card
