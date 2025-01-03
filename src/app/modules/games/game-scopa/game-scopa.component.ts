@@ -36,6 +36,67 @@ export class GameScopaComponent implements OnInit {
     this.game_service.playerCards = this.game_service.getPlayerCards(
       this.common.currentActiveGame
     );
+
+    //Test - creo carte con due o più combinazioni
+    this.getGameCardsWithCombinations();
+  }
+
+  /**Metodo per preparare le carte sul tavolo ed in mano al giocatore
+   * in modo che sia possibile recuperare più combinazioni */
+  getGameCardsWithCombinations() {
+    this.game_service.tableCards = [
+      {
+        extension: 'png',
+        group: 'napoletane',
+        path: 'assets/cards/png/napoletane/coppe/3.png',
+        type: 'coppe',
+        value: 3,
+      },
+      {
+        extension: 'png',
+        group: 'napoletane',
+        path: 'assets/cards/png/napoletane/coppe/4.png',
+        type: 'coppe',
+        value: 4,
+      },
+      {
+        extension: 'png',
+        group: 'napoletane',
+        path: 'assets/cards/png/napoletane/denari/3.png',
+        type: 'denari',
+        value: 3,
+      },
+      {
+        extension: 'png',
+        group: 'napoletane',
+        path: 'assets/cards/png/napoletane/denari/4.png',
+        type: 'denari',
+        value: 4,
+      }
+    ];
+    this.game_service.playerCards = [
+      {
+        extension: 'png',
+        group: 'napoletane',
+        path: 'assets/cards/png/napoletane/coppe/7.png',
+        type: 'coppe',
+        value: 7,
+      },
+      {
+        extension: 'png',
+        group: 'napoletane',
+        path: 'assets/cards/png/napoletane/spade/7.png',
+        type: 'denari',
+        value: 7,
+      },
+      {
+        extension: 'png',
+        group: 'napoletane',
+        path: 'assets/cards/png/napoletane/spade/7.png',
+        type: 'spade',
+        value: 7,
+      }
+    ];
   }
 
   /**Metodo per mischiare le carte */
@@ -55,7 +116,7 @@ export class GameScopaComponent implements OnInit {
     event.preventDefault();
   }
 
-  onDrop(event: DragEvent): void {
+  async onDrop(event: DragEvent): Promise<void> {
     //1. Recuperiamo l'indice testuale della carta trascinata
     console.log('dropping');
     event.preventDefault();
@@ -66,7 +127,7 @@ export class GameScopaComponent implements OnInit {
       //3. Convertiamo l'indice in numero
       const playerCardIndex = parseInt(sPlayerCardIndex ?? '-1', 10);
       if (this.canGetTableCards(playerCardIndex)) {
-        this.getPlayerCardsFromTable(playerCardIndex);
+        await this.getPlayerCardsFromTable(playerCardIndex);
       } else this.addCardOnTable(playerCardIndex);
     }
     //4. Il drop è terminato, non serve più mantenere questa carta
@@ -74,7 +135,7 @@ export class GameScopaComponent implements OnInit {
   }
 
   /**Metodo che recupera le carte dal tavolo */
-  getPlayerCardsFromTable(playerCardIndex: number): void {
+  async getPlayerCardsFromTable(playerCardIndex: number): Promise<void> {
     try {
       //1. Recupero la carta dal suo indice
       const playerCard = this.getCardByIndex(playerCardIndex);
@@ -86,7 +147,7 @@ export class GameScopaComponent implements OnInit {
         return;
       }
       //3. Recupero le carte dal tavolo rispettando le regole di ritiro (ES: match card più importante della somma)
-      const playerObtainedCards = this.getPlayerObtainedCards(
+      const playerObtainedCards = await this.getPlayerObtainedCards(
         playerCard,
         obtainableCards
       );
@@ -114,10 +175,10 @@ export class GameScopaComponent implements OnInit {
    * rispettate le regole di ritiro.
    * ES: il match di valore ha più importanza della somma
    */
-  getPlayerObtainedCards(
+  async getPlayerObtainedCards(
     playerCard: Card | undefined,
     obtainableCards: PlayerObtainableCards
-  ): Card[] | undefined {
+  ): Promise<Card[] | undefined> {
     try {
       if (obtainableCards.sameValueCards.length === 1)
         return obtainableCards.sameValueCards;
@@ -131,8 +192,24 @@ export class GameScopaComponent implements OnInit {
           );
           return;
         }
-        //TODO: dare all'utente la possibilità di scegliere il paio di carte che vuole
-        
+
+        if (matchingCombination.length === 1)
+          return matchingCombination[0].addends;
+
+        //TODO: dare all'utente la possibilità di scegliere il paio di carte che vuole.
+        //TODO: Deve essere fatto usando la dialog creata col componente app-card-choose.
+        //TODO: Occorre quindi:
+        //TODO: - aprire il componente, impostando canShowDialog=true
+        //TODO: - aspettare che all'interno del componente sia effettuata una scelta con una promise
+        //TODO: - quando l'utente effettua la scelta, la promise si risolve e questo metodo prosegue la sua esecuzione
+
+        // Apri il dialog per consentire la selezione delle carte
+        this.canShowDialog = true;
+        // Utilizza async/await per attendere la selezione delle carte
+        const selectedCards = await this.getUserSelectedCards();
+        // Disattiva il dialog
+        this.canShowDialog = false;
+
         return matchingCombination[0].addends;
       }
       return undefined;
@@ -142,6 +219,23 @@ export class GameScopaComponent implements OnInit {
       );
       return undefined;
     }
+  }
+
+  // Metodo helper per gestire l'evento cardChooseEvent
+  private getUserSelectedCards(): Promise<Card[]> {
+    return new Promise<Card[]>((resolve, reject) => {
+      const subscription = this.common.cardChooseEvent.subscribe({
+        next: (chosenCards: Card[]) => {
+          resolve(chosenCards);
+          subscription.unsubscribe(); // Rimuovi il listener
+        },
+        error: (error: any) => {
+          console.error('Error during card selection', error);
+          reject(error);
+          subscription.unsubscribe();
+        },
+      });
+    });
   }
 
   /**Metodo che calcola se, dopo che il giocatore ha messo
