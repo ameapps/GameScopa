@@ -166,8 +166,8 @@ export class MockCardsProviderService {
   /**Metodo per rimuovere le carte specificate dal tavolo */
   public removeCardsFromTable(cardsToRemove: Card[]): Card[] {
     try {
-      cardsToRemove.forEach(card => {
-        this.tableCards = this.tableCards.filter(row => row !== card); 
+      cardsToRemove.forEach((card) => {
+        this.tableCards = this.tableCards.filter((row) => row !== card);
       });
 
       return this.tableCards;
@@ -234,7 +234,7 @@ export class MockCardsProviderService {
           value: 7,
         },
       ];
-      //2. Imposto le carte nel BE 
+      //2. Imposto le carte nel BE
       this.tableCards = tableCards;
       this.player_a_cards = playerCards;
       //3. Costruisco il risultato
@@ -249,6 +249,17 @@ export class MockCardsProviderService {
     }
   }
 
+  /**Metodo per aggiornare le carte del giocatore
+   * che ha appena eseguito una mossa */
+  public updatePlayerCards(playerObtainedCards: Card[]): void {
+    try {
+      ///TODO: salvare le carte tra quelle vinte
+      // this.player_a_cards = [...this.player_a_cards, ...playerObtainedCards];
+      // console.log('carte utente', this.player_a_cards);
+    } catch (error) {
+      console.error('Could not uplate the user cards after their move');
+    }
+  }
   // #endregion
 }
 

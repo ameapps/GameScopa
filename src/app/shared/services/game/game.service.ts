@@ -126,16 +126,11 @@ export class GameService implements OnDestroy {
   }
 
   /**Metodo per aggiornare sul BE le carte che l'utente ha recuperato dal tavolo in totale */
-  public updateUserCards(playerObtainedCards: Card[]) {
+  public updateUserCards(playerObtainedCards: Card[]): void {
     try {
-      throw new Error('Method not implemented.');
-    } catch (error) {}
-  }
-
-  /**Metodo per aggiornare il BE relativamente alle carte attualmente  */
-  public updateTableCards(playerObtainedCards: Card[]) {
-    try {
-      throw new Error('Method not implemented.');
-    } catch (error) {}
+      this.mock_cards_provider.updatePlayerCards(playerObtainedCards);
+    } catch (error) {
+      console.error('Could not update the user cards');
+    }
   }
 }

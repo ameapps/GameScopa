@@ -116,7 +116,12 @@ export class GameScopaComponent implements OnInit {
       this.game_service.removePlayerCard(playerCard);
       //5. Chiedo al BE di aggiornare le carte dell'utente con quelle appena recuperate
       //TODO
-      this.game_service.updateUserCards(playerObtainedCards);
+      if (playerCard == null) {
+        console.error('Attenzione: carta presa non può essere null');
+        return;
+      }
+      const allObtainedCards = [...playerObtainedCards, playerCard];
+      this.game_service.updateUserCards(allObtainedCards);
     } catch (error) {
       console.error(
         'Could not get the cards from the table matching with the specified card value'
