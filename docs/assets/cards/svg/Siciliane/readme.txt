@@ -1,0 +1,1 @@
+Carte generate con AI. Fanno schifo.

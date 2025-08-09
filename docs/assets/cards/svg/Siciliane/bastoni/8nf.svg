@@ -1,0 +1,7 @@
+<svg width="200" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="300" rx="15" ry="15" fill="white" stroke="black" stroke-width="3"/>
+  <text x="10" y="30" font-family="Georgia" font-size="20" fill="black">Fante</text>
+  <rect x="80" y="100" width="40" height="100" fill="green" stroke="black" stroke-width="2"/>
+  <circle cx="100" cy="150" r="20" fill="yellow" stroke="black" stroke-width="2"/>
+  <text x="10" y="280" font-family="Georgia" font-size="20" fill="black">Bastoni</text>
+</svg>

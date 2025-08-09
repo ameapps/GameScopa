@@ -1,0 +1,115 @@
+{
+  "home": {},
+  "games": [
+    {
+      "name": "amateurs",
+      "play_price": 0,
+      "play_starter_style": {
+        "color": "#90EE90"
+      },
+      "card": {
+        "group": "napoletane",
+        "extension": "png"
+      }
+    },
+    {
+      "name": "easy",
+      "play_price": 0,
+      "play_starter_style": {
+        "color": "#32CD32"
+      },
+      "card": {
+        "group": "bolognesi",
+        "extension": "png"
+      }
+    },
+    {
+      "name": "normal",
+      "play_price": 0,
+      "play_starter_style": {
+        "color": "#228B22"
+      },
+      "card": {
+        "group": "piacentine",
+        "extension": "png"
+      }
+    },
+    {
+      "name": "hard",
+      "play_price": 0,
+      "play_starter_style": {
+        "color": "#D2B48C"
+      },
+      "card": {
+        "group": "siciliane",
+        "extension": "png"
+      }
+    },
+    {
+      "name": "master",
+      "play_price": 0,
+      "play_starter_style": {
+        "color": "#A0522D"
+      },
+      "card": {
+        "group": "siciliane",
+        "extension": "png"
+      }
+    },
+    {
+      "name": "nightmare",
+      "play_price": 0,
+      "play_starter_style": {
+        "color": "#8B4513"
+      },
+      "card": {
+        "group": "siciliane",
+        "extension": "png"
+      }
+    },
+    {
+      "name": "impossible",
+      "play_price": 0,
+      "play_starter_style": {
+        "color": "#8B5A2B"
+      },
+      "card": {
+        "group": "siciliane",
+        "extension": "png"
+      }
+    }
+  ],
+  "game_settings" : {
+    "can_show_drag_and_drop_tooltip": false
+  }, 
+  "friends": {},
+  "store": {},
+  "streetFoods": {},
+  "shared": {
+    "header": {
+      "user_level": { "can_show": true },
+      "user_coins": { "can_show": true },
+      "user_info": { "can_show": true },
+      "user_team": { "can_show": true }
+    },
+    "footer": {
+      "home": { "can_show": true },
+      "store": { "can_show": true },
+      "friends": { "can_show": true },
+      "street_foods": { "can_show": true },
+      "mini_games": { "can_show": true }
+    }
+  },
+  "mock": {
+    "can_use_mock_data": true,
+    "data": {
+      "user": {
+        "points": 180,
+        "coins": 99,
+        "name": "User",
+        "teamId": 1,
+        "teamName": "The bests"
+      }
+    }
+  }
+}
